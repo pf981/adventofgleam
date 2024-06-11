@@ -180,6 +180,11 @@ function makeError(variant, module, line, fn, message, extra) {
 var None = class extends CustomType {
 };
 
+// build/dev/javascript/gleam_stdlib/gleam/dynamic.mjs
+function from(a) {
+  return identity(a);
+}
+
 // build/dev/javascript/gleam_stdlib/dict.mjs
 var tempDataView = new DataView(new ArrayBuffer(8));
 var SHIFT = 5;
@@ -189,6 +194,9 @@ var MAX_INDEX_NODE = BUCKET_SIZE / 2;
 var MIN_ARRAY_NODE = BUCKET_SIZE / 4;
 
 // build/dev/javascript/gleam_stdlib/gleam_stdlib.mjs
+function identity(x) {
+  return x;
+}
 function to_string3(term) {
   return term.toString();
 }
@@ -237,6 +245,14 @@ var Element = class extends CustomType {
     this.void = void$;
   }
 };
+var Attribute = class extends CustomType {
+  constructor(x0, x1, as_property) {
+    super();
+    this[0] = x0;
+    this[1] = x1;
+    this.as_property = as_property;
+  }
+};
 var Event = class extends CustomType {
   constructor(x0, x1) {
     super();
@@ -246,8 +262,14 @@ var Event = class extends CustomType {
 };
 
 // build/dev/javascript/lustre/lustre/attribute.mjs
+function attribute(name, value) {
+  return new Attribute(name, from(value), false);
+}
 function on(name, handler) {
   return new Event("on" + name, handler);
+}
+function class$(name) {
+  return attribute("class", name);
 }
 
 // build/dev/javascript/lustre/lustre/element.mjs
@@ -753,6 +775,15 @@ function start3(app, selector, flags) {
 }
 
 // build/dev/javascript/lustre/lustre/element/html.mjs
+function text2(content) {
+  return text(content);
+}
+function header(attrs, children) {
+  return element("header", attrs, children);
+}
+function h1(attrs, children) {
+  return element("h1", attrs, children);
+}
 function div(attrs, children) {
   return element("div", attrs, children);
 }
@@ -787,16 +818,36 @@ function update2(model, msg) {
 }
 function view(model) {
   let count = to_string(model);
+  let header2 = header(
+    toList([class$("p-4 bg-red-500 text-white")]),
+    toList([
+      h1(
+        toList([class$("w-full mx-auto max-w-screen-xl text-4xl font-bold")]),
+        toList([text2("Advent of Gleam")])
+      )
+    ])
+  );
   return div(
     toList([]),
     toList([
+      header2,
       button(
-        toList([on_click(new Increment())]),
+        toList([
+          class$(
+            "text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700"
+          ),
+          on_click(new Increment())
+        ]),
         toList([text("+")])
       ),
       text(count),
       button(
-        toList([on_click(new Decrement())]),
+        toList([
+          class$(
+            "text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700"
+          ),
+          on_click(new Decrement())
+        ]),
         toList([text("-")])
       )
     ])
@@ -809,7 +860,7 @@ function main() {
     throw makeError(
       "assignment_no_match",
       "adventofgleam",
-      9,
+      10,
       "main",
       "Assignment pattern did not match",
       { value: $ }
