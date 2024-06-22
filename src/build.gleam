@@ -1,7 +1,7 @@
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 
-import lustre/element/html.{html}
+import lustre/element/html.{html, text}
 import lustre/ssg
 
 pub fn main() {
@@ -32,6 +32,6 @@ fn page(title: String) -> Element(msg) {
             ",
       ),
     ]),
-    html.body([], []),
+    html.body([], [text("Hello world!")]),
   ])
 }
