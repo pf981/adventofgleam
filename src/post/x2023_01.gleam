@@ -1,3 +1,3 @@
-import page
+import post
 
-pub const content = page.Post
+pub const content = post.Post(2023, 1)
