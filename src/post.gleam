@@ -1,3 +1,26 @@
+import content.{type Content}
+
 pub type Post {
-  Post(year: Int, day: Int)
+  Post(
+    year: Int,
+    day: Int,
+    title: String,
+    description: String,
+    post_date: Date,
+    tags: List(Tag),
+    difficulty: Difficulty,
+    content: List(Content),
+  )
+}
+
+pub type Tag
+
+pub type Difficulty {
+  Easy
+  Medium
+  Hard
+}
+
+pub type Date {
+  Date(year: Int, month: Int, day: Int)
 }

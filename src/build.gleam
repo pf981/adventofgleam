@@ -9,6 +9,7 @@ import lustre/element.{type Element}
 import lustre/element/html.{html, text}
 import lustre/ssg
 
+import content
 import post.{type Post}
 import posts
 
@@ -91,6 +92,6 @@ fn render_post(post: Post) -> Element(msg) {
             ",
       ),
     ]),
-    html.body([], [text("Hello world!")]),
+    html.body([], [html.div([], list.map(post.content, content.view))]),
   ])
 }
