@@ -23,3 +23,7 @@ gleam run   # Run the project
 gleam test  # Run the tests
 gleam shell # Run an Erlang shell
 ```
+
+```sh
+gleam run -m build # Build the static HTML
+```
