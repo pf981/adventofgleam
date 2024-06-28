@@ -45,7 +45,7 @@ pub fn main() {
     |> result.try(fn(_) {
       [
         "--config=tailwind.config.js", "--input=./src/css/app.css",
-        "--output=./priv/css/app.css",
+        "--output=./dist/css/app.css",
       ]
       |> tailwind.run()
     })
@@ -76,7 +76,7 @@ fn page(title: String) -> Element(msg) {
         html.text("that the same app can be run multiple ways "),
         html.text("without changing the core app code."),
       ]),
-      html.p([], [
+      html.p([attribute.class("bg-black")], [
         html.text("Below, we have a counter app rendered three "),
         html.text("different ways. Once as a traditional client "),
         html.text("side app - suitable as a SPA. Then that "),
@@ -105,8 +105,9 @@ fn page(title: String) -> Element(msg) {
         attribute("name", "viewport"),
         attribute("content", "width=device-width, initial-scale=1"),
       ]),
-      html.link([attribute.href("./pico.min.css"), attribute.rel("stylesheet")]),
-      html.link([attribute.href("./lustre-ui.css"), attribute.rel("stylesheet")]),
+      // html.link([attribute.href("./pico.min.css"), attribute.rel("stylesheet")]),
+      // html.link([attribute.href("./lustre-ui.css"), attribute.rel("stylesheet")]),
+      html.link([attribute.href("./css/app.css"), attribute.rel("stylesheet")]),
       html.style(
         [],
         " body > div {
