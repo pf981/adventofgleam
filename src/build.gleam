@@ -4,9 +4,6 @@ import gleam/list
 import gleam/result
 import gleam/string
 
-import lustre/element.{type Element}
-
-import lustre/element/html.{html}
 import lustre/ssg
 
 // import lustre/ui
@@ -14,8 +11,6 @@ import lustre/ssg
 
 import tailwind
 
-import content
-import post.{type Post}
 import posts
 import templates
 
@@ -24,7 +19,7 @@ pub fn main() {
 
   let build =
     ssg.new("./dist")
-    |> ssg.add_static_route("/", page("Home"))
+    |> ssg.add_static_route("/", templates.render_home("."))
     |> list.fold(
       posts,
       _,
@@ -35,7 +30,7 @@ pub fn main() {
             <> int.to_string(post.year)
             <> "/"
             <> string.pad_left(int.to_string(post.day), 2, "0"),
-          render_post(post),
+          templates.render_post("../..", post),
         )
       },
     )
@@ -59,33 +54,4 @@ pub fn main() {
       panic as "Build failed!"
     }
   }
-}
-
-fn render_post(post: Post) -> Element(msg) {
-  let title = int.to_string(post.year) <> "/" <> int.to_string(post.day)
-  let description =
-    "Advent of code "
-    <> int.to_string(post.year)
-    <> " day "
-    <> int.to_string(post.day)
-    <> " in Gleam. "
-    <> post.description
-
-  templates.html(
-    "../..",
-    title,
-    description,
-    html.article([], list.map(post.content, content.view)),
-  )
-}
-
-fn page(title: String) -> Element(msg) {
-  templates.html(
-    ".",
-    title,
-    "Explore creative solutions to Advent of Code challenges using the Gleam programming language
-    on Advent of Gleam. Dive into detailed problem-solving techniques and enhance your coding
-    skills.",
-    templates.home_content("."),
-  )
 }

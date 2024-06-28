@@ -1,8 +1,102 @@
+import gleam/int
+import gleam/list
+
 import lustre/attribute.{attribute}
 import lustre/element.{type Element, element}
-import lustre/element/html.{html, text}
+import lustre/element/html.{text}
 
-pub fn html(
+import content
+import post.{type Post}
+
+pub fn render_home(base_path: String) -> Element(msg) {
+  html(
+    ".",
+    "Advent of Gleam",
+    "Explore creative solutions to Advent of Code challenges using the Gleam programming language
+    on Advent of Gleam. Dive into detailed problem-solving techniques and enhance your coding
+    skills.",
+    home_content(base_path),
+  )
+}
+
+pub fn render_post(base_path: String, post: Post) -> Element(msg) {
+  let title = int.to_string(post.year) <> "/" <> int.to_string(post.day)
+  let description =
+    "Advent of code "
+    <> int.to_string(post.year)
+    <> " day "
+    <> int.to_string(post.day)
+    <> " in Gleam. "
+    <> post.description
+
+  html(
+    base_path,
+    title,
+    description,
+    html.article([attribute.class("container mx-auto")], [
+      html.div([attribute.class("pt-16 lg:pt-20")], [
+        post_title_block(post),
+        html.div(
+          [
+            attribute.class(
+              "prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12",
+            ),
+          ],
+          list.map(post.content, content.view),
+        ),
+      ]),
+    ]),
+  )
+}
+
+fn post_title_block(post: Post) -> Element(msg) {
+  html.div([attribute.class("border-b border-grey-lighter pb-8 sm:pb-12")], [
+    html.span(
+      [
+        attribute.class(
+          "mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8",
+        ),
+      ],
+      [text("category")],
+    ),
+    html.h2(
+      [
+        attribute.class(
+          "block font-body text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl",
+        ),
+      ],
+      [
+        text(
+          "Using Git Submodules for Private Content
+      ",
+        ),
+      ],
+    ),
+    html.div([attribute.class("flex items-center pt-5 sm:pt-8")], [
+      html.p(
+        [
+          attribute.class(
+            "pr-2 font-body font-light text-primary dark:text-white",
+          ),
+        ],
+        [text("July 19, 2020")],
+      ),
+      html.span([attribute.class("vdark:text-white font-body text-grey")], [
+        text("//"),
+      ]),
+      html.p(
+        [
+          attribute.class(
+            "pl-2 font-body font-light text-primary dark:text-white",
+          ),
+        ],
+        [text("4 min read")],
+      ),
+    ]),
+  ])
+}
+
+fn html(
   base_path: String,
   title: String,
   description: String,
