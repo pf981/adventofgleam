@@ -3,3 +3,4 @@
 /build
 erl_crash.dump
 /dist
+priv/css/app.css

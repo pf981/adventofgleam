@@ -1,15 +1,18 @@
 import gleam/int
 import gleam/io
 import gleam/list
+import gleam/result
 import gleam/string
 
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 
-import lustre/element/html.{html, text}
+import lustre/element/html.{html}
 import lustre/ssg
 import lustre/ui
 import lustre/ui/util/cn
+
+import tailwind
 
 import content
 import post.{type Post}
@@ -38,6 +41,14 @@ pub fn main() {
     |> ssg.add_static_dir("./static")
     |> ssg.use_index_routes
     |> ssg.build
+    |> result.map_error(fn(e) { string.inspect(e) })
+    |> result.try(fn(_) {
+      [
+        "--config=tailwind.config.js", "--input=./src/css/app.css",
+        "--output=./priv/css/app.css",
+      ]
+      |> tailwind.run()
+    })
 
   case build {
     Ok(_) -> io.println("Build succeeded!")
