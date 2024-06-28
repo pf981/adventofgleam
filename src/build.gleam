@@ -57,6 +57,7 @@ pub fn main() {
     Error(e) -> {
       io.debug(e)
       io.println("Build failed!")
+      panic as "Build failed!"
     }
   }
 }

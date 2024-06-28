@@ -32,6 +32,7 @@ jobs:
           gleam-version: "1.2.1"
           rebar3-version: "3"
           # elixir-version: "1.15.4"
+      - run: gleam run -m tailwind/install
       - run: gleam run -m build
       - name: Setup Pages
         uses: actions/configure-pages@v5
