@@ -244,7 +244,7 @@ fn page(title: String) -> Element(msg) {
       html.script(
         [
           attribute.src(
-            "//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js",
           ),
         ],
         "",
