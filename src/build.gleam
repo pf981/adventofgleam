@@ -190,7 +190,7 @@ fn page(title: String) -> Element(msg) {
         attribute.name("description"),
       ]),
       html.link([
-        attribute.href("/assets/img/favicon.png"),
+        attribute.href("./img/favicon.png"),
         attribute.type_("image/png"),
         attribute.rel("icon"),
       ]),
@@ -199,10 +199,7 @@ fn page(title: String) -> Element(msg) {
         attribute("property", "og:site_name"),
       ]),
       html.meta([
-        attribute(
-          "content",
-          "https://atlas.tailwindmade.com/assets/img/social.jpg",
-        ),
+        attribute("content", "https://atlas.tailwindmade.com./img/social.jpg"),
         attribute("property", "og:image"),
       ]),
       html.meta([
@@ -294,7 +291,7 @@ fn page(title: String) -> Element(msg) {
                     html.span([attribute.class("mr-2"), attribute.href("/")], [
                       html.img([
                         attribute.alt("logo"),
-                        attribute.src("/assets/img/logo.svg"),
+                        attribute.src("./img/logo.svg"),
                       ]),
                     ]),
                     html.p(
@@ -550,7 +547,7 @@ fn page(title: String) -> Element(msg) {
                     html.img([
                       attribute.alt("author"),
                       attribute.class("h-16 w-16"),
-                      attribute.src("/assets/img/author.png"),
+                      attribute.src("./img/author.png"),
                     ]),
                   ]),
                   html.h1(
@@ -601,7 +598,7 @@ fn page(title: String) -> Element(msg) {
                   html.div([attribute.class("flex items-center pb-6")], [
                     html.img([
                       attribute.alt("icon story"),
-                      attribute.src("/assets/img/icon-story.png"),
+                      attribute.src("./img/icon-story.png"),
                     ]),
                     html.h3(
                       [
@@ -652,7 +649,7 @@ fn page(title: String) -> Element(msg) {
                 html.div([attribute.class("flex items-center pb-6")], [
                   html.img([
                     attribute.alt("icon story"),
-                    attribute.src("/assets/img/icon-story.png"),
+                    attribute.src("./img/icon-story.png"),
                   ]),
                   html.h3(
                     [
@@ -682,7 +679,7 @@ fn page(title: String) -> Element(msg) {
                       html.img([
                         attribute.alt("arrow right"),
                         attribute.class("ml-3"),
-                        attribute.src("/assets/img/long-arrow-right.png"),
+                        attribute.src("./img/long-arrow-right.png"),
                       ]),
                     ],
                   ),
@@ -890,7 +887,7 @@ fn page(title: String) -> Element(msg) {
                 html.div([attribute.class("flex items-center pb-6")], [
                   html.img([
                     attribute.alt("icon story"),
-                    attribute.src("/assets/img/icon-project.png"),
+                    attribute.src("./img/icon-project.png"),
                   ]),
                   html.h3(
                     [
@@ -947,7 +944,7 @@ fn page(title: String) -> Element(msg) {
                         html.img([
                           attribute.alt("chevron right"),
                           attribute.class("mx-auto"),
-                          attribute.src("/assets/img/chevron-right.png"),
+                          attribute.src("./img/chevron-right.png"),
                         ]),
                       ]),
                     ],
@@ -992,7 +989,7 @@ fn page(title: String) -> Element(msg) {
                         html.img([
                           attribute.alt("chevron right"),
                           attribute.class("mx-auto"),
-                          attribute.src("/assets/img/chevron-right.png"),
+                          attribute.src("./img/chevron-right.png"),
                         ]),
                       ]),
                     ],
@@ -1037,7 +1034,7 @@ fn page(title: String) -> Element(msg) {
                         html.img([
                           attribute.alt("chevron right"),
                           attribute.class("mx-auto"),
-                          attribute.src("/assets/img/chevron-right.png"),
+                          attribute.src("./img/chevron-right.png"),
                         ]),
                       ]),
                     ],
@@ -1082,7 +1079,7 @@ fn page(title: String) -> Element(msg) {
                         html.img([
                           attribute.alt("chevron right"),
                           attribute.class("mx-auto"),
-                          attribute.src("/assets/img/chevron-right.png"),
+                          attribute.src("./img/chevron-right.png"),
                         ]),
                       ]),
                     ],
@@ -1111,7 +1108,7 @@ fn page(title: String) -> Element(msg) {
                       [
                         html.img([
                           attribute.alt("logo"),
-                          attribute.src("/assets/img/logo.svg"),
+                          attribute.src("./img/logo.svg"),
                         ]),
                       ],
                     ),
@@ -1191,7 +1188,7 @@ fn page(title: String) -> Element(msg) {
             ),
           ]),
         ]),
-        html.script([attribute.src("./main.js")], ""),
+        html.script([attribute.src("./js/main.js")], ""),
       ],
     ),
   ])
