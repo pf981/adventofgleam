@@ -3,12 +3,13 @@ import lustre/element.{type Element, element}
 import lustre/element/html.{html, text}
 
 pub fn html(
+  base_path: String,
   title: String,
   description: String,
   content: Element(msg),
 ) -> Element(msg) {
   html.html([attribute("lang", "en")], [
-    head(title, description),
+    head(base_path, title, description),
     html.body(
       [
         attribute.class("dark:bg-primary"),
@@ -20,14 +21,18 @@ pub fn html(
         attribute("x-data", "global()"),
       ],
       [
-        html.div([attribute.id("main")], [nav(), content, footer()]),
-        html.script([attribute.src("/js/main.js")], ""),
+        html.div([attribute.id("main")], [
+          nav(base_path),
+          content,
+          footer(base_path),
+        ]),
+        html.script([attribute.src(base_path <> "/js/main.js")], ""),
       ],
     ),
   ])
 }
 
-pub fn home_content() -> Element(msg) {
+pub fn home_content(base_path: String) -> Element(msg) {
   html.div([], [
     html.div([attribute.class("container mx-auto")], [
       html.div(
@@ -37,7 +42,7 @@ pub fn home_content() -> Element(msg) {
             html.img([
               attribute.alt("author"),
               attribute.class("h-16 w-16"),
-              attribute.src("/img/author.png"),
+              attribute.src(base_path <> "/img/author.png"),
             ]),
           ]),
           html.h1(
@@ -77,7 +82,7 @@ pub fn home_content() -> Element(msg) {
           html.div([attribute.class("flex items-center pb-6")], [
             html.img([
               attribute.alt("icon story"),
-              attribute.src("/img/icon-story.png"),
+              attribute.src(base_path <> "/img/icon-story.png"),
             ]),
             html.h3(
               [
@@ -113,7 +118,7 @@ pub fn home_content() -> Element(msg) {
         html.div([attribute.class("flex items-center pb-6")], [
           html.img([
             attribute.alt("icon story"),
-            attribute.src("/img/icon-story.png"),
+            attribute.src(base_path <> "/img/icon-story.png"),
           ]),
           html.h3(
             [
@@ -128,7 +133,7 @@ pub fn home_content() -> Element(msg) {
               attribute.class(
                 "flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary",
               ),
-              attribute.href("/blog"),
+              attribute.href(base_path <> "/blog"),
             ],
             [
               text("All posts"),
@@ -155,7 +160,7 @@ pub fn home_content() -> Element(msg) {
                 attribute.class(
                   "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
                 ),
-                attribute.href("/post"),
+                attribute.href(base_path <> "/post"),
               ],
               [
                 text(
@@ -212,7 +217,7 @@ pub fn home_content() -> Element(msg) {
                   attribute.class(
                     "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
                   ),
-                  attribute.href("/post"),
+                  attribute.href(base_path <> "/post"),
                 ],
                 [
                   text(
@@ -260,7 +265,7 @@ pub fn home_content() -> Element(msg) {
                   attribute.class(
                     "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
                   ),
-                  attribute.href("/post"),
+                  attribute.href(base_path <> "/post"),
                 ],
                 [
                   text(
@@ -460,7 +465,7 @@ pub fn home_content() -> Element(msg) {
   ])
 }
 
-fn head(title: String, description: String) -> Element(msg) {
+fn head(base_path: String, title: String, description: String) -> Element(msg) {
   html.head([], [
     html.meta([attribute("charset", "utf-8")]),
     html.meta([
@@ -482,7 +487,7 @@ fn head(title: String, description: String) -> Element(msg) {
     ]),
     html.meta([attribute("content", description), attribute.name("description")]),
     html.link([
-      attribute.href("./img/favicon.png"),
+      attribute.href(base_path <> "/img/favicon.png"),
       attribute.type_("image/png"),
       attribute.rel("icon"),
     ]),
@@ -515,7 +520,7 @@ fn head(title: String, description: String) -> Element(msg) {
     html.link([
       attribute.rel("stylesheet"),
       attribute("media", "screen"),
-      attribute.href("./css/app.css"),
+      attribute.href(base_path <> "/css/app.css"),
       // attribute("crossorigin", "anonymous"),
     ]),
     html.script(
@@ -543,7 +548,7 @@ fn head(title: String, description: String) -> Element(msg) {
   ])
 }
 
-fn nav() -> Element(msg) {
+fn nav(base_path: String) -> Element(msg) {
   html.nav([], [
     html.div([attribute.class("container mx-auto")], [
       html.div(
@@ -551,7 +556,10 @@ fn nav() -> Element(msg) {
         [
           html.a([attribute.class("flex items-center"), attribute.href("/")], [
             html.span([attribute.class("mr-2"), attribute.href("/")], [
-              html.img([attribute.alt("logo"), attribute.src("./img/logo.svg")]),
+              html.img([
+                attribute.alt("logo"),
+                attribute.src(base_path <> "/img/logo.svg"),
+              ]),
             ]),
             html.p(
               [
@@ -653,7 +661,7 @@ fn nav() -> Element(msg) {
                     attribute.class(
                       "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
                     ),
-                    attribute.href("/blog"),
+                    attribute.href(base_path <> "/blog"),
                   ],
                   [text("Blog")],
                 ),
@@ -672,7 +680,7 @@ fn nav() -> Element(msg) {
                     attribute.class(
                       "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
                     ),
-                    attribute.href("/uses"),
+                    attribute.href(base_path <> "/uses"),
                   ],
                   [text("Uses")],
                 ),
@@ -691,7 +699,7 @@ fn nav() -> Element(msg) {
                     attribute.class(
                       "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
                     ),
-                    attribute.href("/contact"),
+                    attribute.href(base_path <> "/contact"),
                   ],
                   [text("Contact")],
                 ),
@@ -741,7 +749,7 @@ fn nav() -> Element(msg) {
                   attribute.class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href("/"),
+                  attribute.href(base_path <> "/"),
                 ],
                 [text("Intro")],
               ),
@@ -752,7 +760,7 @@ fn nav() -> Element(msg) {
                   attribute.class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href("/blog"),
+                  attribute.href(base_path <> "/blog"),
                 ],
                 [text("Blog")],
               ),
@@ -763,7 +771,7 @@ fn nav() -> Element(msg) {
                   attribute.class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href("/uses"),
+                  attribute.href(base_path <> "/uses"),
                 ],
                 [text("Uses")],
               ),
@@ -774,7 +782,7 @@ fn nav() -> Element(msg) {
                   attribute.class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href("/contact"),
+                  attribute.href(base_path <> "/contact"),
                 ],
                 [text("Contact")],
               ),
@@ -786,7 +794,7 @@ fn nav() -> Element(msg) {
   ])
 }
 
-fn footer() -> Element(msg) {
+fn footer(base_path: String) -> Element(msg) {
   html.div([attribute.class("container mx-auto")], [
     html.div(
       [
@@ -798,9 +806,18 @@ fn footer() -> Element(msg) {
         html.div(
           [attribute.class("mr-auto flex flex-col items-center sm:flex-row")],
           [
-            html.a([attribute.class("mr-auto sm:mr-6"), attribute.href("/")], [
-              html.img([attribute.alt("logo"), attribute.src("./img/logo.svg")]),
-            ]),
+            html.a(
+              [
+                attribute.class("mr-auto sm:mr-6"),
+                attribute.href(base_path <> "/"),
+              ],
+              [
+                html.img([
+                  attribute.alt("logo"),
+                  attribute.src(base_path <> "/img/logo.svg"),
+                ]),
+              ],
+            ),
             html.p(
               [
                 attribute.class(

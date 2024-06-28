@@ -72,39 +72,20 @@ fn render_post(post: Post) -> Element(msg) {
     <> post.description
 
   templates.html(
+    "../..",
     title,
     description,
     html.article([], list.map(post.content, content.view)),
   )
-  // html([attribute("lang", "en"), attribute.class("overflow-x-hidden")], [
-  //   html.head([], [
-  //     html.title([], title),
-  //     html.meta([attribute("charset", "utf-8")]),
-  //     html.meta([
-  //       attribute("name", "viewport"),
-  //       attribute("content", "width=device-width, initial-scale=1"),
-  //     ]),
-  //     html.link([attribute.href("/pico.min.css"), attribute.rel("stylesheet")]),
-  //     html.style(
-  //       [],
-  //       " body > div {
-  //               max-width: 60ch;
-  //               margin: 0 auto;
-  //               padding-top: 2rem;
-  //             }
-  //           ",
-  //     ),
-  //   ]),
-  //   html.body([], [html.div([], list.map(post.content, content.view))]),
-  // ])
 }
 
 fn page(title: String) -> Element(msg) {
   templates.html(
+    ".",
     title,
     "Explore creative solutions to Advent of Code challenges using the Gleam programming language
     on Advent of Gleam. Dive into detailed problem-solving techniques and enhance your coding
     skills.",
-    templates.home_content(),
+    templates.home_content("."),
   )
 }
