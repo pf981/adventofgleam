@@ -7,6 +7,7 @@ pub const content = post.Post(
   title: "Trebuchet?!",
   description: "Easy string manipulation.",
   post_date: post.Date(2024, 6, 22),
+  author: "Paul Foster",
   tags: [],
   difficulty: post.Easy,
   content: [

@@ -49,6 +49,26 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
   )
 }
 
+fn format_date(date: post.Date) -> String {
+  let month = case date.month {
+    1 -> "January"
+    2 -> "February"
+    3 -> "March"
+    4 -> "April"
+    5 -> "May"
+    6 -> "June"
+    7 -> "July"
+    8 -> "August"
+    9 -> "September"
+    10 -> "October"
+    11 -> "November"
+    12 -> "December"
+    _ -> panic as "Unknown month"
+  }
+
+  month <> " " <> int.to_string(date.day) <> ", " <> int.to_string(date.year)
+}
+
 fn post_title_block(post: Post) -> Element(msg) {
   div([class("border-b border-grey-lighter pb-8 sm:pb-12")], [
     span(
@@ -90,11 +110,11 @@ fn post_title_block(post: Post) -> Element(msg) {
     ]),
     div([class("flex items-center pt-5 sm:pt-8")], [
       p([class("pr-2 font-body font-light text-primary dark:text-white")], [
-        text("July 19, 2020"),
+        text(format_date(post.post_date)),
       ]),
       span([class("vdark:text-white font-body text-grey")], [text("//")]),
       p([class("pl-2 font-body font-light text-primary dark:text-white")], [
-        text("4 min read"),
+        text(post.author),
       ]),
     ]),
   ])
@@ -126,7 +146,7 @@ fn html(
   ])
 }
 
-pub fn home_content(base_path: String) -> Element(msg) {
+fn home_content(base_path: String) -> Element(msg) {
   div([], [
     div([class("container mx-auto")], [
       div([class("border-b border-grey-lighter py-16 lg:py-20")], [

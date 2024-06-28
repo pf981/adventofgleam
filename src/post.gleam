@@ -7,6 +7,7 @@ pub type Post {
     title: String,
     description: String,
     post_date: Date,
+    author: String,
     tags: List(Tag),
     difficulty: Difficulty,
     content: List(Content),
