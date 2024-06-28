@@ -629,7 +629,7 @@ fn nav(base_path: String) -> Element(msg) {
                 "hidden font-body text-2xl font-bold text-primary dark:text-white lg:block",
               ),
             ],
-            [text("John Doe")],
+            [text("Advent of Gleam")],
           ),
         ]),
         div([class("flex items-center lg:hidden")], [
@@ -877,7 +877,7 @@ fn footer(base_path: String) -> Element(msg) {
                 "pt-5 font-body font-light text-primary dark:text-white sm:pt-0",
               ),
             ],
-            [text("©2020 John Doe.")],
+            [text("©2024 Paul Foster.")],
           ),
         ]),
         div([class("mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0")], [
