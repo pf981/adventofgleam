@@ -21,7 +21,7 @@ pub fn html(
       ],
       [
         html.div([attribute.id("main")], [nav(), content, footer()]),
-        html.script([attribute.src("./js/main.js")], ""),
+        html.script([attribute.src("/js/main.js")], ""),
       ],
     ),
   ])
@@ -37,7 +37,7 @@ pub fn home_content() -> Element(msg) {
             html.img([
               attribute.alt("author"),
               attribute.class("h-16 w-16"),
-              attribute.src("./img/author.png"),
+              attribute.src("/img/author.png"),
             ]),
           ]),
           html.h1(
@@ -77,7 +77,7 @@ pub fn home_content() -> Element(msg) {
           html.div([attribute.class("flex items-center pb-6")], [
             html.img([
               attribute.alt("icon story"),
-              attribute.src("./img/icon-story.png"),
+              attribute.src("/img/icon-story.png"),
             ]),
             html.h3(
               [
@@ -113,7 +113,7 @@ pub fn home_content() -> Element(msg) {
         html.div([attribute.class("flex items-center pb-6")], [
           html.img([
             attribute.alt("icon story"),
-            attribute.src("./img/icon-story.png"),
+            attribute.src("/img/icon-story.png"),
           ]),
           html.h3(
             [

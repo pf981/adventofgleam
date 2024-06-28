@@ -4,7 +4,6 @@ import gleam/list
 import gleam/result
 import gleam/string
 
-import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 
 import lustre/element/html.{html}
