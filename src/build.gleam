@@ -300,12 +300,7 @@ fn page(title: String) -> Element(msg) {
                           "hidden font-body text-2xl font-bold text-primary dark:text-white lg:block",
                         ),
                       ],
-                      [
-                        text(
-                          "John Doe
-      ",
-                        ),
-                      ],
+                      [text("John Doe")],
                     ),
                   ],
                 ),
@@ -556,12 +551,7 @@ fn page(title: String) -> Element(msg) {
                         "pt-3 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl",
                       ),
                     ],
-                    [
-                      text(
-                        "Hi, I’m John Doe.
-    ",
-                      ),
-                    ],
+                    [text("Hi, I’m John Doe.")],
                   ),
                   html.p(
                     [
@@ -583,12 +573,7 @@ fn page(title: String) -> Element(msg) {
                       ),
                       attribute.href("/"),
                     ],
-                    [
-                      text(
-                        "Say Hello!
-    ",
-                      ),
-                    ],
+                    [text("Say Hello!")],
                   ),
                 ],
               ),
@@ -606,12 +591,7 @@ fn page(title: String) -> Element(msg) {
                           "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
                         ),
                       ],
-                      [
-                        text(
-                          "My Story
-      ",
-                        ),
-                      ],
+                      [text("My Story")],
                     ),
                   ]),
                   html.div([], [
@@ -657,12 +637,7 @@ fn page(title: String) -> Element(msg) {
                         "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
                       ),
                     ],
-                    [
-                      text(
-                        "My Story
-      ",
-                      ),
-                    ],
+                    [text("My Story")],
                   ),
                   html.a(
                     [
@@ -672,10 +647,7 @@ fn page(title: String) -> Element(msg) {
                       attribute.href("/blog"),
                     ],
                     [
-                      text(
-                        "All posts
-        ",
-                      ),
+                      text("All posts"),
                       html.img([
                         attribute.alt("arrow right"),
                         attribute.class("ml-3"),
@@ -716,12 +688,7 @@ fn page(title: String) -> Element(msg) {
                               "pr-2 font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "July 19, 2020
-          ",
-                            ),
-                          ],
+                          [text("July 19, 2020")],
                         ),
                         html.span(
                           [
@@ -737,12 +704,7 @@ fn page(title: String) -> Element(msg) {
                               "pl-2 font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "4 min read
-          ",
-                            ),
-                          ],
+                          [text("4 min read")],
                         ),
                       ]),
                     ],
@@ -809,12 +771,7 @@ fn page(title: String) -> Element(msg) {
                               "pl-2 font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "5 min read
-          ",
-                            ),
-                          ],
+                          [text("5 min read")],
                         ),
                       ]),
                     ],
@@ -850,12 +807,7 @@ fn page(title: String) -> Element(msg) {
                               "pr-2 font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "June 26, 2020
-          ",
-                            ),
-                          ],
+                          [text("June 26, 2020")],
                         ),
                         html.span(
                           [
@@ -871,12 +823,7 @@ fn page(title: String) -> Element(msg) {
                               "pl-2 font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "3 min read
-          ",
-                            ),
-                          ],
+                          [text("3 min read")],
                         ),
                       ]),
                     ],
@@ -895,12 +842,7 @@ fn page(title: String) -> Element(msg) {
                         "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
                       ),
                     ],
-                    [
-                      text(
-                        "My Projects
-      ",
-                      ),
-                    ],
+                    [text("My Projects")],
                   ),
                 ]),
                 html.div([], [
@@ -919,12 +861,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body text-lg font-semibold text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "TailwindCSS
-          ",
-                            ),
-                          ],
+                          [text("TailwindCSS")],
                         ),
                         html.p(
                           [
@@ -934,8 +871,7 @@ fn page(title: String) -> Element(msg) {
                           ],
                           [
                             text(
-                              "Rapidly build modern websites without ever leaving your HTML.
-          ",
+                              "Rapidly build modern websites without ever leaving your HTML.",
                             ),
                           ],
                         ),
@@ -964,12 +900,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body text-lg font-semibold text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "Maizzle
-          ",
-                            ),
-                          ],
+                          [text("Maizzle")],
                         ),
                         html.p(
                           [
@@ -977,12 +908,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "Framework for Rapid Email Prototyping
-          ",
-                            ),
-                          ],
+                          [text("Framework for Rapid Email Prototyping")],
                         ),
                       ]),
                       html.span([attribute.class("w-1/10")], [
@@ -1009,12 +935,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body text-lg font-semibold text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "Alpine.js
-          ",
-                            ),
-                          ],
+                          [text("Alpine.js")],
                         ),
                         html.p(
                           [
@@ -1022,12 +943,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "Think of it like Tailwind for JavaScript.
-          ",
-                            ),
-                          ],
+                          [text("Think of it like Tailwind for JavaScript.")],
                         ),
                       ]),
                       html.span([attribute.class("w-1/10")], [
@@ -1054,12 +970,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body text-lg font-semibold text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "PostCSS
-          ",
-                            ),
-                          ],
+                          [text("PostCSS")],
                         ),
                         html.p(
                           [
@@ -1067,12 +978,7 @@ fn page(title: String) -> Element(msg) {
                               "font-body font-light text-primary dark:text-white",
                             ),
                           ],
-                          [
-                            text(
-                              "A tool for transforming CSS with JavaScript
-          ",
-                            ),
-                          ],
+                          [text("A tool for transforming CSS with JavaScript")],
                         ),
                       ]),
                       html.span([attribute.class("w-1/10")], [
@@ -1118,12 +1024,7 @@ fn page(title: String) -> Element(msg) {
                           "pt-5 font-body font-light text-primary dark:text-white sm:pt-0",
                         ),
                       ],
-                      [
-                        text(
-                          "©2020 John Doe.
-      ",
-                        ),
-                      ],
+                      [text("©2020 John Doe.")],
                     ),
                   ],
                 ),
