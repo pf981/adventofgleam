@@ -24,7 +24,12 @@ pub fn view(content: Content) -> Element(msg) {
     Title(text) -> html.h1([], [element.text(text)])
     Heading(text) -> html.h2([], [element.text(text)])
     DualHeading(first, second) ->
-      html.h2([], [element.text(first), html.small([], [element.text(second)])])
+      html.h2([], [
+        element.text(first),
+        html.small([attribute.class("inline-block indent-3")], [
+          element.text(second),
+        ]),
+      ])
     Subheading(text) -> html.h3([], [element.text(text)])
     Section(content) -> html.p([], list.map(content, view_inline))
     Snippet(lang, code) ->
