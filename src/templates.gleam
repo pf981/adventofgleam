@@ -1,9 +1,9 @@
 import gleam/int
 import gleam/list
 
-import lustre/attribute.{attribute}
+import lustre/attribute.{attribute, class, href}
 import lustre/element.{type Element, element}
-import lustre/element/html.{text}
+import lustre/element/html.{div, h1, h2, p, span, text}
 
 import content
 import post.{type Post}
@@ -33,12 +33,12 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
     base_path,
     title,
     description,
-    html.article([attribute.class("container mx-auto")], [
-      html.div([attribute.class("pt-16 lg:pt-20")], [
+    html.article([class("container mx-auto")], [
+      div([class("pt-16 lg:pt-20")], [
         post_title_block(post),
-        html.div(
+        div(
           [
-            attribute.class(
+            class(
               "prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12",
             ),
           ],
@@ -50,48 +50,52 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
 }
 
 fn post_title_block(post: Post) -> Element(msg) {
-  html.div([attribute.class("border-b border-grey-lighter pb-8 sm:pb-12")], [
-    html.span(
+  div([class("border-b border-grey-lighter pb-8 sm:pb-12")], [
+    span(
       [
-        attribute.class(
+        class(
           "mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8",
         ),
       ],
       [text("category")],
     ),
-    html.h2(
+    h2(
       [
-        attribute.class(
+        class(
           "block font-body text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl",
         ),
       ],
       [
         text(
-          "Using Git Submodules for Private Content
-      ",
+          "Advent of Code "
+          <> int.to_string(post.year)
+          <> " Day "
+          <> int.to_string(post.day),
         ),
       ],
     ),
-    html.div([attribute.class("flex items-center pt-5 sm:pt-8")], [
-      html.p(
-        [
-          attribute.class(
-            "pr-2 font-body font-light text-primary dark:text-white",
-          ),
-        ],
-        [text("July 19, 2020")],
+    html.h3(
+      [
+        class(
+          "block font-body text-2xl font-medium leading-tight text-primary dark:text-white sm:text-3xl md:text-4xl",
+        ),
+      ],
+      [text(post.title)],
+    ),
+    div([class("pr-2 pt-3")], [
+      span(
+        [class("font-body text-xl font-light text-primary dark:text-white")],
+        [text(post.description)],
       ),
-      html.span([attribute.class("vdark:text-white font-body text-grey")], [
-        text("//"),
+    ]),
+    div([class("flex items-center pt-5 sm:pt-8")], [
+      p([class("pr-2 font-body font-light text-primary dark:text-white")], [
+        text("July 19, 2020"),
       ]),
-      html.p(
-        [
-          attribute.class(
-            "pl-2 font-body font-light text-primary dark:text-white",
-          ),
-        ],
-        [text("4 min read")],
-      ),
+      span([class("vdark:text-white font-body text-grey")], [text("//")]),
+      p([class("pl-2 font-body font-light text-primary dark:text-white")], [
+        text("4 min read"),
+      ]),
     ]),
   ])
 }
@@ -106,7 +110,7 @@ fn html(
     head(base_path, title, description),
     html.body(
       [
-        attribute.class("dark:bg-primary"),
+        class("dark:bg-primary"),
         attribute(
           ":class",
           "isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''",
@@ -115,11 +119,7 @@ fn html(
         attribute("x-data", "global()"),
       ],
       [
-        html.div([attribute.id("main")], [
-          nav(base_path),
-          content,
-          footer(base_path),
-        ]),
+        div([attribute.id("main")], [nav(base_path), content, footer(base_path)]),
         html.script([attribute.src(base_path <> "/js/main.js")], ""),
       ],
     ),
@@ -127,96 +127,83 @@ fn html(
 }
 
 pub fn home_content(base_path: String) -> Element(msg) {
-  html.div([], [
-    html.div([attribute.class("container mx-auto")], [
-      html.div(
-        [attribute.class("border-b border-grey-lighter py-16 lg:py-20")],
-        [
-          html.div([], [
-            html.img([
-              attribute.alt("author"),
-              attribute.class("h-16 w-16"),
-              attribute.src(base_path <> "/img/author.png"),
-            ]),
+  div([], [
+    div([class("container mx-auto")], [
+      div([class("border-b border-grey-lighter py-16 lg:py-20")], [
+        div([], [
+          html.img([
+            attribute.alt("author"),
+            class("h-16 w-16"),
+            attribute.src(base_path <> "/img/author.png"),
           ]),
-          html.h1(
-            [
-              attribute.class(
-                "pt-3 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl",
-              ),
-            ],
-            [text("Hi, I’m John Doe.")],
-          ),
-          html.p(
-            [
-              attribute.class(
-                "pt-3 font-body text-xl font-light text-primary dark:text-white",
-              ),
-            ],
-            [
-              text(
-                "A software engineer and open-source advocate enjoying the sunny life in Barcelona, Spain.",
-              ),
-            ],
-          ),
-          html.a(
-            [
-              attribute.class(
-                "mt-12 block bg-secondary px-10 py-4 text-center font-body text-xl font-semibold text-white transition-colors hover:bg-green sm:inline-block sm:text-left sm:text-2xl",
-              ),
-              attribute.href("/"),
-            ],
-            [text("Say Hello!")],
-          ),
-        ],
-      ),
-      html.div(
-        [attribute.class("border-b border-grey-lighter py-16 lg:py-20")],
-        [
-          html.div([attribute.class("flex items-center pb-6")], [
-            html.img([
-              attribute.alt("icon story"),
-              attribute.src(base_path <> "/img/icon-story.png"),
-            ]),
-            html.h3(
-              [
-                attribute.class(
-                  "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
-                ),
-              ],
-              [text("My Story")],
+        ]),
+        h1(
+          [
+            class(
+              "pt-3 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl",
             ),
-          ]),
-          html.div([], [
-            html.p(
-              [
-                attribute.class(
-                  "font-body font-light text-primary dark:text-white",
-                ),
-              ],
-              [
-                text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-                ),
-                html.br([]),
-                html.br([]),
-                text(
-                  "Maecenas accumsan lacus vel facilisis. Eget egestas purus viverra",
-                ),
-              ],
+          ],
+          [text("Hi, I’m John Doe.")],
+        ),
+        p(
+          [
+            class(
+              "pt-3 font-body text-xl font-light text-primary dark:text-white",
             ),
-          ]),
-        ],
-      ),
-      html.div([attribute.class("py-16 lg:py-20")], [
-        html.div([attribute.class("flex items-center pb-6")], [
+          ],
+          [
+            text(
+              "A software engineer and open-source advocate enjoying the sunny life in Barcelona, Spain.",
+            ),
+          ],
+        ),
+        html.a(
+          [
+            class(
+              "mt-12 block bg-secondary px-10 py-4 text-center font-body text-xl font-semibold text-white transition-colors hover:bg-green sm:inline-block sm:text-left sm:text-2xl",
+            ),
+            href("/"),
+          ],
+          [text("Say Hello!")],
+        ),
+      ]),
+      div([class("border-b border-grey-lighter py-16 lg:py-20")], [
+        div([class("flex items-center pb-6")], [
           html.img([
             attribute.alt("icon story"),
             attribute.src(base_path <> "/img/icon-story.png"),
           ]),
           html.h3(
             [
-              attribute.class(
+              class(
+                "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
+              ),
+            ],
+            [text("My Story")],
+          ),
+        ]),
+        div([], [
+          p([class("font-body font-light text-primary dark:text-white")], [
+            text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+            ),
+            html.br([]),
+            html.br([]),
+            text(
+              "Maecenas accumsan lacus vel facilisis. Eget egestas purus viverra",
+            ),
+          ]),
+        ]),
+      ]),
+      div([class("py-16 lg:py-20")], [
+        div([class("flex items-center pb-6")], [
+          html.img([
+            attribute.alt("icon story"),
+            attribute.src(base_path <> "/img/icon-story.png"),
+          ]),
+          html.h3(
+            [
+              class(
                 "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
               ),
             ],
@@ -224,26 +211,26 @@ pub fn home_content(base_path: String) -> Element(msg) {
           ),
           html.a(
             [
-              attribute.class(
+              class(
                 "flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary",
               ),
-              attribute.href(base_path <> "/blog"),
+              href(base_path <> "/blog"),
             ],
             [
               text("All posts"),
               html.img([
                 attribute.alt("arrow right"),
-                attribute.class("ml-3"),
+                class("ml-3"),
                 attribute.src("./img/long-arrow-right.png"),
               ]),
             ],
           ),
         ]),
-        html.div([attribute.class("pt-8")], [
-          html.div([attribute.class("border-b border-grey-lighter pb-8")], [
-            html.span(
+        div([class("pt-8")], [
+          div([class("border-b border-grey-lighter pb-8")], [
+            span(
               [
-                attribute.class(
+                class(
                   "mb-4 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green",
                 ),
               ],
@@ -251,10 +238,10 @@ pub fn home_content(base_path: String) -> Element(msg) {
             ),
             html.a(
               [
-                attribute.class(
+                class(
                   "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
                 ),
-                attribute.href(base_path <> "/post"),
+                href(base_path <> "/post"),
               ],
               [
                 text(
@@ -262,22 +249,19 @@ pub fn home_content(base_path: String) -> Element(msg) {
                 ),
               ],
             ),
-            html.div([attribute.class("flex items-center pt-4")], [
-              html.p(
+            div([class("flex items-center pt-4")], [
+              p(
                 [
-                  attribute.class(
+                  class(
                     "pr-2 font-body font-light text-primary dark:text-white",
                   ),
                 ],
                 [text("July 19, 2020")],
               ),
-              html.span(
-                [attribute.class("font-body text-grey dark:text-white")],
-                [text("//")],
-              ),
-              html.p(
+              span([class("font-body text-grey dark:text-white")], [text("//")]),
+              p(
                 [
-                  attribute.class(
+                  class(
                     "pl-2 font-body font-light text-primary dark:text-white",
                   ),
                 ],
@@ -285,164 +269,145 @@ pub fn home_content(base_path: String) -> Element(msg) {
               ),
             ]),
           ]),
-          html.div(
-            [attribute.class("border-b border-grey-lighter pt-10 pb-8")],
-            [
-              html.div([attribute.class("flex items-center")], [
-                html.span(
-                  [
-                    attribute.class(
-                      "mb-4 inline-block rounded-full bg-grey-light px-2 py-1 font-body text-sm text-blue-dark",
-                    ),
-                  ],
-                  [text("category")],
-                ),
-                html.span(
-                  [
-                    attribute.class(
-                      "mb-4 ml-4 inline-block rounded-full bg-yellow-light px-2 py-1 font-body text-sm text-yellow-dark",
-                    ),
-                  ],
-                  [text("category")],
-                ),
-              ]),
-              html.a(
+          div([class("border-b border-grey-lighter pt-10 pb-8")], [
+            div([class("flex items-center")], [
+              span(
                 [
-                  attribute.class(
-                    "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
-                  ),
-                  attribute.href(base_path <> "/post"),
-                ],
-                [
-                  text(
-                    "Senectus et netus et malesuada fames ac turpis egestas integer",
-                  ),
-                ],
-              ),
-              html.div([attribute.class("flex items-center pt-4")], [
-                html.p(
-                  [
-                    attribute.class(
-                      "pr-2 font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("June 30, 2020")],
-                ),
-                html.span(
-                  [attribute.class("font-body text-grey dark:text-white")],
-                  [text("//")],
-                ),
-                html.p(
-                  [
-                    attribute.class(
-                      "pl-2 font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("5 min read")],
-                ),
-              ]),
-            ],
-          ),
-          html.div(
-            [attribute.class("border-b border-grey-lighter pt-10 pb-8")],
-            [
-              html.span(
-                [
-                  attribute.class(
-                    "mb-4 inline-block rounded-full bg-blue-light px-2 py-1 font-body text-sm text-blue",
+                  class(
+                    "mb-4 inline-block rounded-full bg-grey-light px-2 py-1 font-body text-sm text-blue-dark",
                   ),
                 ],
                 [text("category")],
               ),
-              html.a(
+              span(
                 [
-                  attribute.class(
-                    "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
-                  ),
-                  attribute.href(base_path <> "/post"),
-                ],
-                [
-                  text(
-                    "Vulputate ut pharetra sit amet aliquam id diam maecenas ultricies",
+                  class(
+                    "mb-4 ml-4 inline-block rounded-full bg-yellow-light px-2 py-1 font-body text-sm text-yellow-dark",
                   ),
                 ],
+                [text("category")],
               ),
-              html.div([attribute.class("flex items-center pt-4")], [
-                html.p(
-                  [
-                    attribute.class(
-                      "pr-2 font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("June 26, 2020")],
+            ]),
+            html.a(
+              [
+                class(
+                  "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
                 ),
-                html.span(
-                  [attribute.class("font-body text-grey dark:text-white")],
-                  [text("//")],
+                href(base_path <> "/post"),
+              ],
+              [
+                text(
+                  "Senectus et netus et malesuada fames ac turpis egestas integer",
                 ),
-                html.p(
-                  [
-                    attribute.class(
-                      "pl-2 font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("3 min read")],
+              ],
+            ),
+            div([class("flex items-center pt-4")], [
+              p(
+                [
+                  class(
+                    "pr-2 font-body font-light text-primary dark:text-white",
+                  ),
+                ],
+                [text("June 30, 2020")],
+              ),
+              span([class("font-body text-grey dark:text-white")], [text("//")]),
+              p(
+                [
+                  class(
+                    "pl-2 font-body font-light text-primary dark:text-white",
+                  ),
+                ],
+                [text("5 min read")],
+              ),
+            ]),
+          ]),
+          div([class("border-b border-grey-lighter pt-10 pb-8")], [
+            span(
+              [
+                class(
+                  "mb-4 inline-block rounded-full bg-blue-light px-2 py-1 font-body text-sm text-blue",
                 ),
-              ]),
-            ],
-          ),
+              ],
+              [text("category")],
+            ),
+            html.a(
+              [
+                class(
+                  "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
+                ),
+                href(base_path <> "/post"),
+              ],
+              [
+                text(
+                  "Vulputate ut pharetra sit amet aliquam id diam maecenas ultricies",
+                ),
+              ],
+            ),
+            div([class("flex items-center pt-4")], [
+              p(
+                [
+                  class(
+                    "pr-2 font-body font-light text-primary dark:text-white",
+                  ),
+                ],
+                [text("June 26, 2020")],
+              ),
+              span([class("font-body text-grey dark:text-white")], [text("//")]),
+              p(
+                [
+                  class(
+                    "pl-2 font-body font-light text-primary dark:text-white",
+                  ),
+                ],
+                [text("3 min read")],
+              ),
+            ]),
+          ]),
         ]),
       ]),
-      html.div([attribute.class("pb-16 lg:pb-20")], [
-        html.div([attribute.class("flex items-center pb-6")], [
+      div([class("pb-16 lg:pb-20")], [
+        div([class("flex items-center pb-6")], [
           html.img([
             attribute.alt("icon story"),
             attribute.src("./img/icon-project.png"),
           ]),
           html.h3(
             [
-              attribute.class(
+              class(
                 "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
               ),
             ],
             [text("My Projects")],
           ),
         ]),
-        html.div([], [
+        div([], [
           html.a(
             [
-              attribute.class(
+              class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
               ),
-              attribute.href(" / "),
+              href(" / "),
             ],
             [
-              html.span([attribute.class("w-9/10 pr-8")], [
+              span([class("w-9/10 pr-8")], [
                 html.h4(
                   [
-                    attribute.class(
+                    class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
                     ),
                   ],
                   [text("TailwindCSS")],
                 ),
-                html.p(
-                  [
-                    attribute.class(
-                      "font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [
-                    text(
-                      "Rapidly build modern websites without ever leaving your HTML.",
-                    ),
-                  ],
-                ),
+                p([class("font-body font-light text-primary dark:text-white")], [
+                  text(
+                    "Rapidly build modern websites without ever leaving your HTML.",
+                  ),
+                ]),
               ]),
-              html.span([attribute.class("w-1/10")], [
+              span([class("w-1/10")], [
                 html.img([
                   attribute.alt("chevron right"),
-                  attribute.class("mx-auto"),
+                  class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
                 ]),
               ]),
@@ -450,34 +415,29 @@ pub fn home_content(base_path: String) -> Element(msg) {
           ),
           html.a(
             [
-              attribute.class(
+              class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
               ),
-              attribute.href(" / "),
+              href(" / "),
             ],
             [
-              html.span([attribute.class("w-9/10 pr-8")], [
+              span([class("w-9/10 pr-8")], [
                 html.h4(
                   [
-                    attribute.class(
+                    class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
                     ),
                   ],
                   [text("Maizzle")],
                 ),
-                html.p(
-                  [
-                    attribute.class(
-                      "font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("Framework for Rapid Email Prototyping")],
-                ),
+                p([class("font-body font-light text-primary dark:text-white")], [
+                  text("Framework for Rapid Email Prototyping"),
+                ]),
               ]),
-              html.span([attribute.class("w-1/10")], [
+              span([class("w-1/10")], [
                 html.img([
                   attribute.alt("chevron right"),
-                  attribute.class("mx-auto"),
+                  class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
                 ]),
               ]),
@@ -485,34 +445,29 @@ pub fn home_content(base_path: String) -> Element(msg) {
           ),
           html.a(
             [
-              attribute.class(
+              class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
               ),
-              attribute.href(" / "),
+              href(" / "),
             ],
             [
-              html.span([attribute.class("w-9/10 pr-8")], [
+              span([class("w-9/10 pr-8")], [
                 html.h4(
                   [
-                    attribute.class(
+                    class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
                     ),
                   ],
                   [text("Alpine.js")],
                 ),
-                html.p(
-                  [
-                    attribute.class(
-                      "font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("Think of it like Tailwind for JavaScript.")],
-                ),
+                p([class("font-body font-light text-primary dark:text-white")], [
+                  text("Think of it like Tailwind for JavaScript."),
+                ]),
               ]),
-              html.span([attribute.class("w-1/10")], [
+              span([class("w-1/10")], [
                 html.img([
                   attribute.alt("chevron right"),
-                  attribute.class("mx-auto"),
+                  class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
                 ]),
               ]),
@@ -520,34 +475,29 @@ pub fn home_content(base_path: String) -> Element(msg) {
           ),
           html.a(
             [
-              attribute.class(
+              class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
               ),
-              attribute.href(" / "),
+              href(" / "),
             ],
             [
-              html.span([attribute.class("w-9/10 pr-8")], [
+              span([class("w-9/10 pr-8")], [
                 html.h4(
                   [
-                    attribute.class(
+                    class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
                     ),
                   ],
                   [text("PostCSS")],
                 ),
-                html.p(
-                  [
-                    attribute.class(
-                      "font-body font-light text-primary dark:text-white",
-                    ),
-                  ],
-                  [text("A tool for transforming CSS with JavaScript")],
-                ),
+                p([class("font-body font-light text-primary dark:text-white")], [
+                  text("A tool for transforming CSS with JavaScript"),
+                ]),
               ]),
-              html.span([attribute.class("w-1/10")], [
+              span([class("w-1/10")], [
                 html.img([
                   attribute.alt("chevron right"),
-                  attribute.class("mx-auto"),
+                  class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
                 ]),
               ]),
@@ -581,7 +531,7 @@ fn head(base_path: String, title: String, description: String) -> Element(msg) {
     ]),
     html.meta([attribute("content", description), attribute.name("description")]),
     html.link([
-      attribute.href(base_path <> "/img/favicon.png"),
+      href(base_path <> "/img/favicon.png"),
       attribute.type_("image/png"),
       attribute.rel("icon"),
     ]),
@@ -591,30 +541,30 @@ fn head(base_path: String, title: String, description: String) -> Element(msg) {
     ]),
     html.link([
       attribute.rel("preconnect"),
-      attribute.href("https://fonts.gstatic.com"),
+      href("https://fonts.gstatic.com"),
       attribute("crossorigin", "crossorigin"),
     ]),
     html.link([
       attribute.rel("preload"),
-      attribute.href(
+      href(
         "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap",
       ),
       attribute("as", "style"),
     ]),
     html.link([
       attribute.rel("stylesheet"),
-      attribute.href(
+      href(
         "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap",
       ),
     ]),
     html.link([
-      attribute.href("https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"),
+      href("https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"),
       attribute.rel("stylesheet"),
     ]),
     html.link([
       attribute.rel("stylesheet"),
       attribute("media", "screen"),
-      attribute.href(base_path <> "/css/app.css"),
+      href(base_path <> "/css/app.css"),
       // attribute("crossorigin", "anonymous"),
     ]),
     html.script(
@@ -626,7 +576,7 @@ fn head(base_path: String, title: String, description: String) -> Element(msg) {
       "",
     ),
     html.link([
-      attribute.href(
+      href(
         "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-dark.min.css",
       ),
       attribute.rel("stylesheet"),
@@ -644,239 +594,236 @@ fn head(base_path: String, title: String, description: String) -> Element(msg) {
 
 fn nav(base_path: String) -> Element(msg) {
   html.nav([], [
-    html.div([attribute.class("container mx-auto")], [
-      html.div(
-        [attribute.class("flex items-center justify-between py-6 lg:py-10")],
-        [
-          html.a([attribute.class("flex items-center"), attribute.href("/")], [
-            html.span([attribute.class("mr-2"), attribute.href("/")], [
-              html.img([
-                attribute.alt("logo"),
-                attribute.src(base_path <> "/img/logo.svg"),
-              ]),
-            ]),
-            html.p(
-              [
-                attribute.class(
-                  "hidden font-body text-2xl font-bold text-primary dark:text-white lg:block",
-                ),
-              ],
-              [text("John Doe")],
-            ),
-          ]),
-          html.div([attribute.class("flex items-center lg:hidden")], [
-            html.i(
-              [
-                attribute(":class", "isDarkMode ? 'bxs-sun' : 'bxs-moon'"),
-                attribute("@click", "themeSwitch()"),
-                attribute.class(
-                  "bx mr-8 cursor-pointer text-3xl text-primary dark:text-white",
-                ),
-              ],
-              [],
-            ),
-            html.svg(
-              [
-                attribute.class("fill-current text-primary dark:text-white"),
-                attribute("@click", "isMobileMenuOpen = true"),
-                attribute("xmlns", "http://www.w3.org/2000/svg"),
-                attribute.height(15),
-                attribute.width(24),
-              ],
-              [
-                element("g", [attribute("fill-rule", "evenodd")], [
-                  element(
-                    "rect",
-                    [
-                      attribute("rx", "1.5"),
-                      attribute.height(3),
-                      attribute.width(24),
-                    ],
-                    [],
-                  ),
-                  element(
-                    "rect",
-                    [
-                      attribute("rx", "1.5"),
-                      attribute.height(3),
-                      attribute.width(16),
-                      attribute("y", "6"),
-                      attribute("x", "8"),
-                    ],
-                    [],
-                  ),
-                  element(
-                    "rect",
-                    [
-                      attribute("rx", "1.5"),
-                      attribute.height(3),
-                      attribute.width(20),
-                      attribute("y", "12"),
-                      attribute("x", "4"),
-                    ],
-                    [],
-                  ),
-                ]),
-              ],
-            ),
-          ]),
-          html.div([attribute.class("hidden lg:block")], [
-            html.ul([attribute.class("flex items-center")], [
-              html.li([attribute.class("group relative mr-6 mb-1")], [
-                html.div(
-                  [
-                    attribute.class(
-                      "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
-                    ),
-                  ],
-                  [],
-                ),
-                html.a(
-                  [
-                    attribute.class(
-                      "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
-                    ),
-                    attribute.href("/"),
-                  ],
-                  [text("Intro")],
-                ),
-              ]),
-              html.li([attribute.class("group relative mr-6 mb-1")], [
-                html.div(
-                  [
-                    attribute.class(
-                      "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
-                    ),
-                  ],
-                  [],
-                ),
-                html.a(
-                  [
-                    attribute.class(
-                      "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
-                    ),
-                    attribute.href(base_path <> "/blog"),
-                  ],
-                  [text("Blog")],
-                ),
-              ]),
-              html.li([attribute.class("group relative mr-6 mb-1")], [
-                html.div(
-                  [
-                    attribute.class(
-                      "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
-                    ),
-                  ],
-                  [],
-                ),
-                html.a(
-                  [
-                    attribute.class(
-                      "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
-                    ),
-                    attribute.href(base_path <> "/uses"),
-                  ],
-                  [text("Uses")],
-                ),
-              ]),
-              html.li([attribute.class("group relative mr-6 mb-1")], [
-                html.div(
-                  [
-                    attribute.class(
-                      "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
-                    ),
-                  ],
-                  [],
-                ),
-                html.a(
-                  [
-                    attribute.class(
-                      "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
-                    ),
-                    attribute.href(base_path <> "/contact"),
-                  ],
-                  [text("Contact")],
-                ),
-              ]),
-              html.li([], [
-                html.i(
-                  [
-                    attribute(":class", "isDarkMode ? 'bxs-sun' : 'bxs-moon'"),
-                    attribute("@click", "themeSwitch()"),
-                    attribute.class(
-                      "bx cursor-pointer text-3xl text-primary dark:text-white",
-                    ),
-                  ],
-                  [],
-                ),
-              ]),
+    div([class("container mx-auto")], [
+      div([class("flex items-center justify-between py-6 lg:py-10")], [
+        html.a([class("flex items-center"), href("/")], [
+          span([class("mr-2"), href("/")], [
+            html.img([
+              attribute.alt("logo"),
+              attribute.src(base_path <> "/img/logo.svg"),
             ]),
           ]),
-        ],
-      ),
+          p(
+            [
+              class(
+                "hidden font-body text-2xl font-bold text-primary dark:text-white lg:block",
+              ),
+            ],
+            [text("John Doe")],
+          ),
+        ]),
+        div([class("flex items-center lg:hidden")], [
+          html.i(
+            [
+              attribute(":class", "isDarkMode ? 'bxs-sun' : 'bxs-moon'"),
+              attribute("@click", "themeSwitch()"),
+              class(
+                "bx mr-8 cursor-pointer text-3xl text-primary dark:text-white",
+              ),
+            ],
+            [],
+          ),
+          html.svg(
+            [
+              class("fill-current text-primary dark:text-white"),
+              attribute("@click", "isMobileMenuOpen = true"),
+              attribute("xmlns", "http://www.w3.org/2000/svg"),
+              attribute.height(15),
+              attribute.width(24),
+            ],
+            [
+              element("g", [attribute("fill-rule", "evenodd")], [
+                element(
+                  "rect",
+                  [
+                    attribute("rx", "1.5"),
+                    attribute.height(3),
+                    attribute.width(24),
+                  ],
+                  [],
+                ),
+                element(
+                  "rect",
+                  [
+                    attribute("rx", "1.5"),
+                    attribute.height(3),
+                    attribute.width(16),
+                    attribute("y", "6"),
+                    attribute("x", "8"),
+                  ],
+                  [],
+                ),
+                element(
+                  "rect",
+                  [
+                    attribute("rx", "1.5"),
+                    attribute.height(3),
+                    attribute.width(20),
+                    attribute("y", "12"),
+                    attribute("x", "4"),
+                  ],
+                  [],
+                ),
+              ]),
+            ],
+          ),
+        ]),
+        div([class("hidden lg:block")], [
+          html.ul([class("flex items-center")], [
+            html.li([class("group relative mr-6 mb-1")], [
+              div(
+                [
+                  class(
+                    "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
+                  ),
+                ],
+                [],
+              ),
+              html.a(
+                [
+                  class(
+                    "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
+                  ),
+                  href("/"),
+                ],
+                [text("Intro")],
+              ),
+            ]),
+            html.li([class("group relative mr-6 mb-1")], [
+              div(
+                [
+                  class(
+                    "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
+                  ),
+                ],
+                [],
+              ),
+              html.a(
+                [
+                  class(
+                    "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
+                  ),
+                  href(base_path <> "/blog"),
+                ],
+                [text("Blog")],
+              ),
+            ]),
+            html.li([class("group relative mr-6 mb-1")], [
+              div(
+                [
+                  class(
+                    "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
+                  ),
+                ],
+                [],
+              ),
+              html.a(
+                [
+                  class(
+                    "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
+                  ),
+                  href(base_path <> "/uses"),
+                ],
+                [text("Uses")],
+              ),
+            ]),
+            html.li([class("group relative mr-6 mb-1")], [
+              div(
+                [
+                  class(
+                    "absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow",
+                  ),
+                ],
+                [],
+              ),
+              html.a(
+                [
+                  class(
+                    "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
+                  ),
+                  href(base_path <> "/contact"),
+                ],
+                [text("Contact")],
+              ),
+            ]),
+            html.li([], [
+              html.i(
+                [
+                  attribute(":class", "isDarkMode ? 'bxs-sun' : 'bxs-moon'"),
+                  attribute("@click", "themeSwitch()"),
+                  class(
+                    "bx cursor-pointer text-3xl text-primary dark:text-white",
+                  ),
+                ],
+                [],
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
     ]),
-    html.div(
+    div(
       [
         attribute(
           ":class",
           "isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : ''",
         ),
-        attribute.class(
+        class(
           "pointer-events-none fixed inset-0 z-50 flex bg-black bg-opacity-80 opacity-0 transition-opacity lg:hidden",
         ),
       ],
       [
-        html.div([attribute.class("ml-auto w-2/3 bg-green p-4 md:w-1/3")], [
+        div([class("ml-auto w-2/3 bg-green p-4 md:w-1/3")], [
           html.i(
             [
               attribute("@click", "isMobileMenuOpen = false"),
-              attribute.class(
+              class(
                 "bx bx-x absolute top-0 right-0 mt-4 mr-4 text-4xl text-white",
               ),
             ],
             [],
           ),
-          html.ul([attribute.class("mt-8 flex flex-col")], [
-            html.li([attribute.class("")], [
+          html.ul([class("mt-8 flex flex-col")], [
+            html.li([class("")], [
               html.a(
                 [
-                  attribute.class(
+                  class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href(base_path <> "/"),
+                  href(base_path <> "/"),
                 ],
                 [text("Intro")],
               ),
             ]),
-            html.li([attribute.class("")], [
+            html.li([class("")], [
               html.a(
                 [
-                  attribute.class(
+                  class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href(base_path <> "/blog"),
+                  href(base_path <> "/blog"),
                 ],
                 [text("Blog")],
               ),
             ]),
-            html.li([attribute.class("")], [
+            html.li([class("")], [
               html.a(
                 [
-                  attribute.class(
+                  class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href(base_path <> "/uses"),
+                  href(base_path <> "/uses"),
                 ],
                 [text("Uses")],
               ),
             ]),
-            html.li([attribute.class("")], [
+            html.li([class("")], [
               html.a(
                 [
-                  attribute.class(
+                  class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
                   ),
-                  attribute.href(base_path <> "/contact"),
+                  href(base_path <> "/contact"),
                 ],
                 [text("Contact")],
               ),
@@ -889,92 +836,65 @@ fn nav(base_path: String) -> Element(msg) {
 }
 
 fn footer(base_path: String) -> Element(msg) {
-  html.div([attribute.class("container mx-auto")], [
-    html.div(
+  div([class("container mx-auto")], [
+    div(
       [
-        attribute.class(
+        class(
           "flex flex-col items-center justify-between border-t border-grey-lighter py-10 sm:flex-row sm:py-12",
         ),
       ],
       [
-        html.div(
-          [attribute.class("mr-auto flex flex-col items-center sm:flex-row")],
-          [
-            html.a(
+        div([class("mr-auto flex flex-col items-center sm:flex-row")], [
+          html.a([class("mr-auto sm:mr-6"), href(base_path <> "/")], [
+            html.img([
+              attribute.alt("logo"),
+              attribute.src(base_path <> "/img/logo.svg"),
+            ]),
+          ]),
+          p(
+            [
+              class(
+                "pt-5 font-body font-light text-primary dark:text-white sm:pt-0",
+              ),
+            ],
+            [text("©2020 John Doe.")],
+          ),
+        ]),
+        div([class("mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0")], [
+          html.a([attribute.target("_blank"), href("https://github.com/ ")], [
+            html.i(
               [
-                attribute.class("mr-auto sm:mr-6"),
-                attribute.href(base_path <> "/"),
-              ],
-              [
-                html.img([
-                  attribute.alt("logo"),
-                  attribute.src(base_path <> "/img/logo.svg"),
-                ]),
-              ],
-            ),
-            html.p(
-              [
-                attribute.class(
-                  "pt-5 font-body font-light text-primary dark:text-white sm:pt-0",
+                class(
+                  "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-github",
                 ),
               ],
-              [text("©2020 John Doe.")],
+              [],
             ),
-          ],
-        ),
-        html.div(
-          [attribute.class("mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0")],
-          [
-            html.a(
+          ]),
+          html.a([attribute.target("_blank"), href("https://codepen.io/ ")], [
+            html.i(
               [
-                attribute.target("_blank"),
-                attribute.href("https://github.com/ "),
-              ],
-              [
-                html.i(
-                  [
-                    attribute.class(
-                      "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-github",
-                    ),
-                  ],
-                  [],
+                class(
+                  "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-codepen",
                 ),
               ],
+              [],
             ),
-            html.a(
-              [
-                attribute.target("_blank"),
-                attribute.href("https://codepen.io/ "),
-              ],
-              [
-                html.i(
-                  [
-                    attribute.class(
-                      "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-codepen",
-                    ),
-                  ],
-                  [],
-                ),
-              ],
-            ),
-            html.a(
-              [
-                attribute.target("_blank"),
-                attribute.href("https://www.linkedin.com/ "),
-              ],
-              [
-                html.i(
-                  [
-                    attribute.class(
-                      "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin",
-                    ),
-                  ],
-                  [],
-                ),
-              ],
-            ),
-          ],
-        ),
+          ]),
+          html.a(
+            [attribute.target("_blank"), href("https://www.linkedin.com/ ")],
+            [
+              html.i(
+                [
+                  class(
+                    "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin",
+                  ),
+                ],
+                [],
+              ),
+            ],
+          ),
+        ]),
       ],
     ),
   ])
