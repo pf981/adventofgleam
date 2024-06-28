@@ -1191,7 +1191,7 @@ fn page(title: String) -> Element(msg) {
             ),
           ]),
         ]),
-        html.script([attribute.src("./app.js")], ""),
+        html.script([attribute.src("./main.js")], ""),
       ],
     ),
   ])
