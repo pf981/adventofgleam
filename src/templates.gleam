@@ -39,19 +39,59 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
     base_path,
     title,
     description,
-    html.article([class("container mx-auto")], [
-      div([class("pt-16 lg:pt-20")], [
-        post_title_block(post),
-        div(
+    html.div([class("container mx-auto")], [
+      html.article([], [
+        div([class("pt-16 lg:pt-20")], [
+          post_title_block(post),
+          div(
+            [
+              class(
+                "prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12",
+              ),
+            ],
+            list.map(post.content, content.view(base_path, _)),
+          ),
+        ]),
+      ]),
+      html.span([class("flex justify-end space-x-4 pt-3 pb-3")], [
+        a(
           [
+            attribute.target("_blank"),
+            href(
+              "https://adventofcode.com/"
+              <> int.to_string(post.year)
+              <> "/day/"
+              <> int.to_string(post.day),
+            ),
             class(
-              "prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12",
+              "block bg-secondary p-3 text-center font-body text-base font-medium text-white transition-colors hover:bg-green",
             ),
           ],
-          list.map(post.content, content.view(base_path, _)),
+          [i([class("bx bx-link-external pr-1")], []), text("Problem")],
+        ),
+        a(
+          [
+            class(
+              "block bg-secondary p-3 text-center font-body text-base font-medium text-white transition-colors hover:bg-green",
+            ),
+          ],
+          [i([class("bx bx-code-alt pr-1")], []), text("Full Solution")],
         ),
       ]),
     ]),
+    // html.article([class("container mx-auto")], [
+  //   div([class("pt-16 lg:pt-20")], [
+  //     post_title_block(post),
+  //     div(
+  //       [
+  //         class(
+  //           "prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12",
+  //         ),
+  //       ],
+  //       list.map(post.content, content.view(base_path, _)),
+  //     ),
+  //   ]),
+  // ]),
   )
 }
 

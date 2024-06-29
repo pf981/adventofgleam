@@ -26,6 +26,7 @@ pub type InlineContent {
 }
 
 pub type Color {
+  Red
   Green
   Blue
   Yellow
@@ -50,7 +51,9 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
       html.div(
         [
           class(
-            "md:float-left md:mr-6 md:mb-6 sm:w-full md:max-w-sm rounded overflow-hidden shadow-lg",
+            // "md:float-left md:mr-6 md:mb-6 sm:w-full md:max-w-sm rounded overflow-hidden shadow-lg",
+            // "md:float-left md:mr-6 md:mb-6 sm:w-full md:max-w-screen-sm rounded overflow-hidden shadow-lg",
+            "md:float-left md:mr-6 md:mb-6 sm:w-full md:max-w-md rounded overflow-hidden shadow-lg",
           ),
           class(
             "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
@@ -110,7 +113,9 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
       )
     UList(content) ->
       html.ul(
-        [],
+        // overflow-hidden makes bullets indented correctly when next to floating element
+        [class("overflow-hidden")],
+        // [class("list-inside")],
         content
           |> list.map(list.map(_, view_inline))
           |> list.map(html.li([], _)),
@@ -132,6 +137,7 @@ fn view_inline(content: InlineContent) -> Element(msg) {
 
 fn color_class(color: Option(Color)) -> attribute.Attribute(a) {
   case color {
+    Some(Red) -> class("text-red")
     Some(Green) -> class("text-green")
     Some(Blue) -> class("text-blue")
     Some(Yellow) -> class("text-yellow-dark")

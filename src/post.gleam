@@ -10,6 +10,7 @@ pub type Post {
     author: String,
     tags: List(Tag),
     difficulty: Difficulty,
+    code: String,
     content: List(Content),
   )
 }
