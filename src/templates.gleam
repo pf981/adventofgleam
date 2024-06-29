@@ -3,7 +3,9 @@ import gleam/list
 
 import lustre/attribute.{attribute, class, href}
 import lustre/element.{type Element, element}
-import lustre/element/html.{div, h1, h2, p, span, text}
+import lustre/element/html.{
+  a, div, h1, h2, h3, h4, i, img, li, p, span, text, ul,
+}
 
 import content
 import post.{type Post}
@@ -94,7 +96,7 @@ fn post_title_block(post: Post) -> Element(msg) {
         ),
       ],
     ),
-    html.h3(
+    h3(
       [
         class(
           "block font-body text-2xl font-medium leading-tight text-primary dark:text-white sm:text-3xl md:text-4xl",
@@ -151,7 +153,7 @@ fn home_content(base_path: String) -> Element(msg) {
     div([class("container mx-auto")], [
       div([class("border-b border-grey-lighter py-16 lg:py-20")], [
         div([], [
-          html.img([
+          img([
             attribute.alt("author"),
             class("h-16 w-16"),
             attribute.src(base_path <> "/img/author.png"),
@@ -177,7 +179,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ),
           ],
         ),
-        html.a(
+        a(
           [
             class(
               "mt-12 block bg-secondary px-10 py-4 text-center font-body text-xl font-semibold text-white transition-colors hover:bg-green sm:inline-block sm:text-left sm:text-2xl",
@@ -189,11 +191,11 @@ fn home_content(base_path: String) -> Element(msg) {
       ]),
       div([class("border-b border-grey-lighter py-16 lg:py-20")], [
         div([class("flex items-center pb-6")], [
-          html.img([
+          img([
             attribute.alt("icon story"),
             attribute.src(base_path <> "/img/icon-story.png"),
           ]),
-          html.h3(
+          h3(
             [
               class(
                 "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
@@ -217,11 +219,11 @@ fn home_content(base_path: String) -> Element(msg) {
       ]),
       div([class("py-16 lg:py-20")], [
         div([class("flex items-center pb-6")], [
-          html.img([
+          img([
             attribute.alt("icon story"),
             attribute.src(base_path <> "/img/icon-story.png"),
           ]),
-          html.h3(
+          h3(
             [
               class(
                 "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
@@ -229,7 +231,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ],
             [text("My Story")],
           ),
-          html.a(
+          a(
             [
               class(
                 "flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary",
@@ -238,7 +240,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ],
             [
               text("All posts"),
-              html.img([
+              img([
                 attribute.alt("arrow right"),
                 class("ml-3"),
                 attribute.src("./img/long-arrow-right.png"),
@@ -256,7 +258,7 @@ fn home_content(base_path: String) -> Element(msg) {
               ],
               [text("category")],
             ),
-            html.a(
+            a(
               [
                 class(
                   "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
@@ -308,7 +310,7 @@ fn home_content(base_path: String) -> Element(msg) {
                 [text("category")],
               ),
             ]),
-            html.a(
+            a(
               [
                 class(
                   "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
@@ -350,7 +352,7 @@ fn home_content(base_path: String) -> Element(msg) {
               ],
               [text("category")],
             ),
-            html.a(
+            a(
               [
                 class(
                   "block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary",
@@ -387,11 +389,11 @@ fn home_content(base_path: String) -> Element(msg) {
       ]),
       div([class("pb-16 lg:pb-20")], [
         div([class("flex items-center pb-6")], [
-          html.img([
+          img([
             attribute.alt("icon story"),
             attribute.src("./img/icon-project.png"),
           ]),
-          html.h3(
+          h3(
             [
               class(
                 "ml-3 font-body text-2xl font-semibold text-primary dark:text-white",
@@ -401,7 +403,7 @@ fn home_content(base_path: String) -> Element(msg) {
           ),
         ]),
         div([], [
-          html.a(
+          a(
             [
               class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
@@ -410,7 +412,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ],
             [
               span([class("w-9/10 pr-8")], [
-                html.h4(
+                h4(
                   [
                     class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
@@ -425,7 +427,7 @@ fn home_content(base_path: String) -> Element(msg) {
                 ]),
               ]),
               span([class("w-1/10")], [
-                html.img([
+                img([
                   attribute.alt("chevron right"),
                   class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
@@ -433,7 +435,7 @@ fn home_content(base_path: String) -> Element(msg) {
               ]),
             ],
           ),
-          html.a(
+          a(
             [
               class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
@@ -442,7 +444,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ],
             [
               span([class("w-9/10 pr-8")], [
-                html.h4(
+                h4(
                   [
                     class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
@@ -455,7 +457,7 @@ fn home_content(base_path: String) -> Element(msg) {
                 ]),
               ]),
               span([class("w-1/10")], [
-                html.img([
+                img([
                   attribute.alt("chevron right"),
                   class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
@@ -463,7 +465,7 @@ fn home_content(base_path: String) -> Element(msg) {
               ]),
             ],
           ),
-          html.a(
+          a(
             [
               class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
@@ -472,7 +474,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ],
             [
               span([class("w-9/10 pr-8")], [
-                html.h4(
+                h4(
                   [
                     class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
@@ -485,7 +487,7 @@ fn home_content(base_path: String) -> Element(msg) {
                 ]),
               ]),
               span([class("w-1/10")], [
-                html.img([
+                img([
                   attribute.alt("chevron right"),
                   class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
@@ -493,7 +495,7 @@ fn home_content(base_path: String) -> Element(msg) {
               ]),
             ],
           ),
-          html.a(
+          a(
             [
               class(
                 "mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6",
@@ -502,7 +504,7 @@ fn home_content(base_path: String) -> Element(msg) {
             ],
             [
               span([class("w-9/10 pr-8")], [
-                html.h4(
+                h4(
                   [
                     class(
                       "font-body text-lg font-semibold text-primary dark:text-white",
@@ -515,7 +517,7 @@ fn home_content(base_path: String) -> Element(msg) {
                 ]),
               ]),
               span([class("w-1/10")], [
-                html.img([
+                img([
                   attribute.alt("chevron right"),
                   class("mx-auto"),
                   attribute.src("./img/chevron-right.png"),
@@ -616,9 +618,9 @@ fn nav(base_path: String) -> Element(msg) {
   html.nav([], [
     div([class("container mx-auto")], [
       div([class("flex items-center justify-between py-6 lg:py-10")], [
-        html.a([class("flex items-center"), href("/")], [
+        a([class("flex items-center"), href("/")], [
           span([class("mr-2"), href("/")], [
-            html.img([
+            img([
               attribute.alt("logo"),
               attribute.src(base_path <> "/img/logo.svg"),
             ]),
@@ -633,7 +635,7 @@ fn nav(base_path: String) -> Element(msg) {
           ),
         ]),
         div([class("flex items-center lg:hidden")], [
-          html.i(
+          i(
             [
               attribute(":class", "isDarkMode ? 'bxs-sun' : 'bxs-moon'"),
               attribute("@click", "themeSwitch()"),
@@ -689,8 +691,8 @@ fn nav(base_path: String) -> Element(msg) {
           ),
         ]),
         div([class("hidden lg:block")], [
-          html.ul([class("flex items-center")], [
-            html.li([class("group relative mr-6 mb-1")], [
+          ul([class("flex items-center")], [
+            li([class("group relative mr-6 mb-1")], [
               div(
                 [
                   class(
@@ -699,7 +701,7 @@ fn nav(base_path: String) -> Element(msg) {
                 ],
                 [],
               ),
-              html.a(
+              a(
                 [
                   class(
                     "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
@@ -709,7 +711,7 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Intro")],
               ),
             ]),
-            html.li([class("group relative mr-6 mb-1")], [
+            li([class("group relative mr-6 mb-1")], [
               div(
                 [
                   class(
@@ -718,7 +720,7 @@ fn nav(base_path: String) -> Element(msg) {
                 ],
                 [],
               ),
-              html.a(
+              a(
                 [
                   class(
                     "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
@@ -728,7 +730,7 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Blog")],
               ),
             ]),
-            html.li([class("group relative mr-6 mb-1")], [
+            li([class("group relative mr-6 mb-1")], [
               div(
                 [
                   class(
@@ -737,7 +739,7 @@ fn nav(base_path: String) -> Element(msg) {
                 ],
                 [],
               ),
-              html.a(
+              a(
                 [
                   class(
                     "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
@@ -747,7 +749,7 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Uses")],
               ),
             ]),
-            html.li([class("group relative mr-6 mb-1")], [
+            li([class("group relative mr-6 mb-1")], [
               div(
                 [
                   class(
@@ -756,7 +758,7 @@ fn nav(base_path: String) -> Element(msg) {
                 ],
                 [],
               ),
-              html.a(
+              a(
                 [
                   class(
                     "relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary",
@@ -766,8 +768,8 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Contact")],
               ),
             ]),
-            html.li([], [
-              html.i(
+            li([], [
+              i(
                 [
                   attribute(":class", "isDarkMode ? 'bxs-sun' : 'bxs-moon'"),
                   attribute("@click", "themeSwitch()"),
@@ -794,7 +796,7 @@ fn nav(base_path: String) -> Element(msg) {
       ],
       [
         div([class("ml-auto w-2/3 bg-green p-4 md:w-1/3")], [
-          html.i(
+          i(
             [
               attribute("@click", "isMobileMenuOpen = false"),
               class(
@@ -803,9 +805,9 @@ fn nav(base_path: String) -> Element(msg) {
             ],
             [],
           ),
-          html.ul([class("mt-8 flex flex-col")], [
-            html.li([class("")], [
-              html.a(
+          ul([class("mt-8 flex flex-col")], [
+            li([class("")], [
+              a(
                 [
                   class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
@@ -815,8 +817,8 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Intro")],
               ),
             ]),
-            html.li([class("")], [
-              html.a(
+            li([class("")], [
+              a(
                 [
                   class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
@@ -826,8 +828,8 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Blog")],
               ),
             ]),
-            html.li([class("")], [
-              html.a(
+            li([class("")], [
+              a(
                 [
                   class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
@@ -837,8 +839,8 @@ fn nav(base_path: String) -> Element(msg) {
                 [text("Uses")],
               ),
             ]),
-            html.li([class("")], [
-              html.a(
+            li([class("")], [
+              a(
                 [
                   class(
                     "mb-3 block px-2 font-body text-lg font-medium text-white",
@@ -865,8 +867,8 @@ fn footer(base_path: String) -> Element(msg) {
       ],
       [
         div([class("mr-auto flex flex-col items-center sm:flex-row")], [
-          html.a([class("mr-auto sm:mr-6"), href(base_path <> "/")], [
-            html.img([
+          a([class("mr-auto sm:mr-6"), href(base_path <> "/")], [
+            img([
               attribute.alt("logo"),
               attribute.src(base_path <> "/img/logo.svg"),
             ]),
@@ -881,8 +883,8 @@ fn footer(base_path: String) -> Element(msg) {
           ),
         ]),
         div([class("mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0")], [
-          html.a([attribute.target("_blank"), href("https://github.com/ ")], [
-            html.i(
+          a([attribute.target("_blank"), href("https://github.com/ ")], [
+            i(
               [
                 class(
                   "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-github",
@@ -891,8 +893,8 @@ fn footer(base_path: String) -> Element(msg) {
               [],
             ),
           ]),
-          html.a([attribute.target("_blank"), href("https://codepen.io/ ")], [
-            html.i(
+          a([attribute.target("_blank"), href("https://codepen.io/ ")], [
+            i(
               [
                 class(
                   "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-codepen",
@@ -901,19 +903,16 @@ fn footer(base_path: String) -> Element(msg) {
               [],
             ),
           ]),
-          html.a(
-            [attribute.target("_blank"), href("https://www.linkedin.com/ ")],
-            [
-              html.i(
-                [
-                  class(
-                    "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin",
-                  ),
-                ],
-                [],
-              ),
-            ],
-          ),
+          a([attribute.target("_blank"), href("https://www.linkedin.com/ ")], [
+            i(
+              [
+                class(
+                  "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin",
+                ),
+              ],
+              [],
+            ),
+          ]),
         ]),
       ],
     ),
