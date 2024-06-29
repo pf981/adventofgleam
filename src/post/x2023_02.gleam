@@ -80,68 +80,83 @@ print(answer2)",
     ),
     Section(
       [
+        Text("For example, if a line contains "), Code("\"13 red\""),
+        Text(", we know we need to exclude it."),
+      ],
+    ),
+    Section(
+      [
         Text(
-          "
-For example, if a line contains \"13 red\", we know we need to exclude it.
-
-We’ll use regex to extract the largest red, green, and blue values. Then we’ll keep only games where
-
-largest_red ≤ 12, and
-largest_green ≤ 13, and
-largest_blue ≤ 14",
+          "We’ll use regex to extract the largest red, green, and blue values. Then we’ll keep only games where",
         ),
+      ],
+    ),
+    UList(
+      [
+        [Code("largest_red ≤ 12"), Text(", and")],
+        [Code("largest_green ≤ 13"), Text(", and")],
+        [Code("largest_blue ≤ 14")],
       ],
     ),
     Snippet(
       "python",
-      "words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-m.update({text: i for i, text in enumerate(words, 1)})
-rev_m = {text[::-1]: value for text, value in m.items()}
+      "import re
 
-answer2 = sum(10 * first_value(line, m) + first_value(line[::-1], rev_m) for line in lines)
-print(answer2)
-#> 281",
-    ), Section([Text("Here is some normal text")]),
-    UList(
-      [
-        [
-          Code("m"),
-          Text(
-            " has been extended to include mappings for digits spelled out with letters (e.g. ",
-          ), Code("{'one': 1, 'two': 2, ...}"), Text(")."),
-        ],
-        [
-          Text(""), Code("rev_m"), Text(" is m with each key reversed (e.g. "),
-          Code("{'eno': 1, 'owt': 2, ...}"), Text(")"),
-        ],
-        [
-          Text("The first digit is extracted using "), Code("m"),
-          Text(", while the last digit uses "), Code("rev_m"),
-        ],
-      ],
+
+def extract_cubes(line):
+    return [extract_max(line, color) for color in ['red', 'green', 'blue']]
+
+
+def extract_max(line, c):
+    return max(int(num) for num in re.findall(r'(\\d+) ' + c, line))
+
+
+max_cubes = [extract_cubes(line) for line in lines]
+answer1 = sum(
+    game_id
+    for game_id, cubes in enumerate(max_cubes, 1)
+    if cubes[0] <= 12 and cubes[1] <= 13 and cubes[2] <= 14
+)
+print(answer1)
+#> 8",
     ),
     Info(
       "Key Points",
       [
-        Section([Text("Here is some normal text")]),
         UList(
           [
             [
-              Code("m"),
-              Text(
-                " has been extended to include mappings for digits spelled out with letters (e.g. ",
-              ), Code("{'one': 1, 'two': 2, ...}"), Text(")."),
+              Code("extract_max"),
+              Text(" finds highest quantity of a single colour using regex"),
             ],
             [
-              Text(""), Code("rev_m"),
-              Text(" is m with each key reversed (e.g. "),
-              Code("{'eno': 1, 'owt': 2, ...}"), Text(")"),
+              Code("extract_cubes"),
+              Text(" function find highest quantity of every colour"),
             ],
-            [
-              Text("The first digit is extracted using "), Code("m"),
-              Text(", while the last digit uses "), Code("rev_m"),
-            ],
+            [Text("Filter and sum the game IDs based on the colour constraint")],
           ],
+        ),
+      ],
+    ), DualHeading("Part 2", "Combining Cube Colour Counts"),
+    Card(
+      "Task 2",
+      Some("img/2023-02-02.svg"),
+      [
+        Section(
+          [
+            Emphasis("Multiply", None), Text(" the "), Emphasis("largest", None),
+            Text(" "), Emphasis("red", Some(Red)), Text(", "),
+            Emphasis("green", Some(Green)), Text(", and "),
+            Emphasis("blue", Some(Blue)), Text(" values. Then get the "),
+            Emphasis("sum", Some(Yellow)), Text("."),
+          ],
+        ),
+      ],
+    ),
+    Section(
+      [
+        Text(
+          "In part 1, we need to identify which games would be possible if there were only",
         ),
       ],
     ),
