@@ -1,8 +1,8 @@
 import gleam/option.{None, Some}
 
 import content.{
-  Blue, Card, Code, DualHeading, Emphasis, Green, Info, Link, Red, Section,
-  Snippet, Text, UList, Yellow,
+  Blue, Card, Code, DualHeading, Emphasis, Green, Info, Link, Quote, Red,
+  Section, Snippet, Text, UList, Yellow,
 }
 import post
 
@@ -152,14 +152,59 @@ print(answer1)
           ],
         ),
       ],
+    ), Section([Text("Part 2 is essentially asking,")]),
+    Quote(
+      [
+        Text(
+          "What is the fewest number of cubes of each color that could have been in the bag to make the game possible?",
+        ),
+      ],
     ),
     Section(
       [
         Text(
-          "In part 1, we need to identify which games would be possible if there were only",
+          "The word \"fewest\" might lead you to think we need to get the minimum. But actually, we need to find the ",
+        ), Emphasis("maximum", None), Text(" of each colour."),
+      ],
+    ),
+    Section(
+      [
+        Text(
+          "Luckily, that’s precisely what we did in part 1. So we just need to multiply the largest of each colour and get the sum.",
         ),
       ],
     ),
+    Snippet(
+      "python",
+      "import math
+
+
+answer2 = sum(math.prod(cubes) for cubes in max_cubes)
+print(answer2)
+#> 2286",
+    ),
+    Info(
+      "Key Points",
+      [
+        UList(
+          [
+            [Text("We already have the largest of each colour from part 1")],
+            [Text("Multiply the largest of each colour and get the sum")],
+          ],
+        ),
+      ],
+    ), DualHeading("Stocking Stuffers", "Cand-Coated Comprehensions"),
+    Section(
+      [
+        Text(
+          "Pretty much every line in the solution is a list comprehension. They can be combined to construct a juicy one-liner.",
+        ),
+      ],
+    ),
+    Snippet(
+      "python",
+      "[sum(l) for l in zip(*[(i * (cubes[0] <= 12 and cubes[1] <= 13 and cubes[2] <= 14), math.prod(cubes)) for i, cubes in enumerate(([max(int(num) for num in re.findall(r'(\\d+) ' + c, line)) for c in ['red', 'green', 'blue']] for line in lines), 1)])]
+#> [8, 2286]",
+    ),
   ],
 )
-// "), Emphasis("", Some(Green)), Text("

@@ -15,6 +15,7 @@ pub type Content {
   Card(heading: String, image: Option(String), List(Content))
   Info(heading: String, List(Content))
   UList(List(List(InlineContent)))
+  Quote(List(InlineContent))
 }
 
 pub type InlineContent {
@@ -48,6 +49,19 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
         html.code([], [element.text(code)]),
       ])
     Card(heading, Some(image), content) ->
+      // html.div([class("card")], [
+      //   html.div([class("card-body")], [
+      //     html.div([class("card-title")], [html.text(heading)]),
+      //     ..list.map(content, view(base_path, _))
+      //   ]),
+      //   html.figure([], [
+      //     html.img([
+      //       attribute.alt(heading),
+      //       attribute.src(base_path <> "/" <> image),
+      //     ]),
+      //   ]),
+      // ])
+
       html.div(
         [
           class(
@@ -115,10 +129,14 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
       html.ul(
         // overflow-hidden makes bullets indented correctly when next to floating element
         [class("overflow-hidden")],
-        // [class("list-inside")],
         content
           |> list.map(list.map(_, view_inline))
           |> list.map(html.li([], _)),
+      )
+    Quote(content) ->
+      html.blockquote(
+        [class("clear-left font-light")],
+        list.map(content, view_inline),
       )
   }
 }
