@@ -12,7 +12,9 @@ pub type Content {
   Subheading(String)
   Section(List(InlineContent))
   Snippet(lang: String, code: String)
-  Card(heading: String, image: Option(String), List(InlineContent))
+  Card(heading: String, image: Option(String), List(Content))
+  Info(heading: String, List(Content))
+  UList(List(List(InlineContent)))
 }
 
 pub type InlineContent {
@@ -63,7 +65,7 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
             html.div([class("font-bold text-xl mb-2")], [html.text(heading)]),
             html.p(
               [class("text-gray-700 text-base")],
-              list.map(content, view_inline),
+              list.map(content, view(base_path, _)),
             ),
           ]),
           html.div(
@@ -129,6 +131,21 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
     //   ),
     // ])
     Card(heading, None, content) -> todo
+    Info(heading, content) -> html.ul([], list.map(content, view(base_path, _)))
+    UList(content) -> {
+      // html.ul([], list.flat_map(content, list.map(_, view_inline)))
+      // let x: List(Element(msg)) =
+      content
+      |> list.map(list.map(_, view_inline))
+      |> list.map(html.li([], _))
+
+      html.ul(
+        [],
+        content
+          |> list.map(list.map(_, view_inline))
+          |> list.map(html.li([], _)),
+      )
+    }
   }
 }
 
