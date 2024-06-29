@@ -44,7 +44,7 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
               "prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12",
             ),
           ],
-          list.map(post.content, content.view),
+          list.map(post.content, content.view(base_path, _)),
         ),
       ]),
     ]),

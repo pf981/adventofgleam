@@ -1,4 +1,9 @@
-import content.{Code, DualHeading, Link, Section, Snippet, Text}
+import gleam/option.{Some}
+
+import content.{
+  Blue, Card, Code, DualHeading, EmphasisUL, Green, Link, Section, Snippet, Text,
+  Yellow,
+}
 import post
 
 pub const content = post.Post(
@@ -32,19 +37,15 @@ pub const content = post.Post(
       "with open('input.txt', \"r\") as f:
     lines = f.readlines()",
     ), DualHeading("Part 1", "Trebuchet Trouble"),
-    // TaskCard("Task 1", [])
+    Card(
+      "Task 1",
+      Some("img/2023-01-01.svg"),
+      [
+        Text("Combine the "), EmphasisUL("first", Some(Green)), Text(" and "),
+        EmphasisUL("last", Some(Blue)),
+        Text(" digit of each string and get the "),
+        EmphasisUL("sum", Some(Yellow)), Text("."),
+      ],
+    ),
   ],
 )
-//   Title(String)
-//   Heading(String)
-//   DualHeading(String, String)
-//   Subheading(String)
-//   Section(List(InlineContent))
-//   Snippet(lang: String, code: String)
-
-// pub type InlineContent {
-//   Bold(String)
-//   Code(String)
-//   Link(href: String, text: String)
-//   Text(String)
-// }
