@@ -54,17 +54,11 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
         [
           class("max-w-sm rounded overflow-hidden shadow-lg"),
           attribute.class(
-            "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
+            "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r  flex flex-col justify-between leading-normal",
             // "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
           ),
         ],
         [
-          html.img([
-            attribute.alt(heading),
-            attribute.src(base_path <> "/" <> image),
-            class("w-full"),
-            class("bg-white"),
-          ]),
           html.div([class("px-6 py-4")], [
             html.div([class("font-bold text-xl mb-2")], [html.text(heading)]),
             html.p(
@@ -72,6 +66,16 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
               list.map(content, view_inline),
             ),
           ]),
+          html.div(
+            [class("w-full mx-0 px-0 bg-white border-t border-grey-lighter")],
+            [
+              html.img([
+                attribute.alt(heading),
+                attribute.src(base_path <> "/" <> image),
+                class("w-full p-4"),
+              ]),
+            ],
+          ),
         ],
       )
     // html.div([attribute.class("max-w-sm w-full lg:max-w-full lg:flex")], [
