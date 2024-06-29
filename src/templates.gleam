@@ -75,16 +75,29 @@ fn format_date(date: post.Date) -> String {
   month <> " " <> int.to_string(date.day) <> ", " <> int.to_string(date.year)
 }
 
+fn difficulty_span(difficulty: post.Difficulty) -> Element(msg) {
+  let #(name, color) = case difficulty {
+    post.Easy -> #("Easy", "green")
+    post.Medium -> #("Medium", "yellow")
+    post.Hard -> #("Hard", "red")
+  }
+  span(
+    [
+      class(
+        "mb-5 inline-block rounded-full bg-"
+        <> color
+        <> "-light px-2 py-1 font-body text-sm text-"
+        <> color
+        <> " sm:mb-8",
+      ),
+    ],
+    [text(name)],
+  )
+}
+
 fn post_title_block(post: Post) -> Element(msg) {
   div([class("border-b border-grey-lighter pb-8 sm:pb-12")], [
-    span(
-      [
-        class(
-          "mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8",
-        ),
-      ],
-      [text("category")],
-    ),
+    difficulty_span(post.difficulty),
     h2(
       [
         class(

@@ -125,6 +125,16 @@ print(answer1)
         Text(" with each key reversed."),
       ],
     ),
+    Snippet(
+      "python",
+      "words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+m.update({text: i for i, text in enumerate(words, 1)})
+rev_m = {text[::-1]: value for text, value in m.items()}
+
+answer2 = sum(10 * first_value(line, m) + first_value(line[::-1], rev_m) for line in lines)
+print(answer2)
+#> 281",
+    ),
     Info(
       "Key Points",
       [

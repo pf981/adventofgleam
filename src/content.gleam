@@ -43,14 +43,16 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
     Subheading(text) -> html.h3([], [element.text(text)])
     Section(content) -> html.p([], list.map(content, view_inline))
     Snippet(lang, code) ->
-      html.pre([attribute("data-lang", lang)], [
+      html.pre([attribute("data-lang", lang), class("clear-left")], [
         html.code([], [element.text(code)]),
       ])
     Card(heading, Some(image), content) ->
       html.div(
         [
-          class("max-w-sm rounded overflow-hidden shadow-lg"),
-          attribute.class(
+          class(
+            "md:float-left md:mr-6 md:mb-6 sm:w-full md:max-w-sm rounded overflow-hidden shadow-lg",
+          ),
+          class(
             "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
             // "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
           ),
