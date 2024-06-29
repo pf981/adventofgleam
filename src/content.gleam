@@ -56,7 +56,7 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
         [
           class("max-w-sm rounded overflow-hidden shadow-lg"),
           attribute.class(
-            "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r  flex flex-col justify-between leading-normal",
+            "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
             // "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
           ),
         ],
@@ -80,72 +80,44 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
           ),
         ],
       )
-    // html.div([attribute.class("max-w-sm w-full lg:max-w-full lg:flex")], [
-    //   html.div(
-    //     [
-    //       attribute("title", "Woman holding a mug"),
-    //       attribute(
-    //         "style",
-    //         "background-image: url('" <> base_path <> "/" <> image <> "')",
-    //       ),
-    //       attribute.class(
-    //         "h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden",
-    //       ),
-    //     ],
-    //     [],
-    //   ),
-    //   html.div(
-    //     [
-    //       attribute.class(
-    //         "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
-    //       ),
-    //     ],
-    //     [
-    //       html.div([attribute.class("mb-8")], [
-    //         html.div(
-    //           [attribute.class("text-gray-900 font-bold text-xl mb-2")],
-    //           [element.text("Can coffee make you a better developer?")],
-    //         ),
-    //         html.p([attribute.class("text-gray-700 text-base")], [
-    //           element.text(
-    //             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-    //           ),
-    //         ]),
-    //       ]),
-    //       html.div([attribute.class("flex items-center")], [
-    //         html.img([
-    //           attribute.alt("Avatar of Jonathan Reinink"),
-    //           attribute.src("/img/jonathan.jpg"),
-    //           attribute.class("w-10 h-10 rounded-full mr-4"),
-    //         ]),
-    //         html.div([attribute.class("text-sm")], [
-    //           html.p([attribute.class("text-gray-900 leading-none")], [
-    //             element.text("Jonathan Reinink"),
-    //           ]),
-    //           html.p([attribute.class("text-gray-600")], [
-    //             element.text("Aug 18"),
-    //           ]),
-    //         ]),
-    //       ]),
-    //     ],
-    //   ),
-    // ])
     Card(heading, None, content) -> todo
-    Info(heading, content) -> html.ul([], list.map(content, view(base_path, _)))
-    UList(content) -> {
-      // html.ul([], list.flat_map(content, list.map(_, view_inline)))
-      // let x: List(Element(msg)) =
-      content
-      |> list.map(list.map(_, view_inline))
-      |> list.map(html.li([], _))
-
+    // Info(heading, content) -> html.ul([], list.map(content, view(base_path, _)))
+    Info(heading, content) ->
+      html.div(
+        [
+          class("w-full rounded overflow-hidden shadow-lg"),
+          attribute.class(
+            "border-4 border-secondary rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
+            // "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
+          ),
+        ],
+        [
+          html.div([], [
+            html.div(
+              // [
+              //   class(
+              //     "p-3 font-body text-2xl font-semibold text-white bg-secondary",
+              //   ),
+              // ],
+              // [class("p-4 font-bold text-xl mb-2 bg-secondary text-white")],
+              [class("px-6 py-4 font-semibold text-xl bg-secondary text-white")],
+              [html.text(heading)],
+            ),
+            html.div(
+              // [class("text-gray-700 text-base")],
+              [class("px-6")],
+              list.map(content, view(base_path, _)),
+            ),
+          ]),
+        ],
+      )
+    UList(content) ->
       html.ul(
         [],
         content
           |> list.map(list.map(_, view_inline))
           |> list.map(html.li([], _)),
       )
-    }
   }
 }
 
