@@ -70,8 +70,10 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
             "md:float-left md:mr-6 md:mb-6 sm:w-full md:max-w-md rounded overflow-hidden shadow-lg",
           ),
           class(
-            "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
-            // "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
+            "border rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
+            // "border-solid border-2 border-gray-50 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
+          // "border-r border-b border-l border-t border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal",
+          // "border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal",
           ),
         ],
         [
