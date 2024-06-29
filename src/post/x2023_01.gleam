@@ -34,7 +34,7 @@ pub const content = post.Post(
     ), Section([Text("First, we'll read the input.")]),
     Snippet(
       "python",
-      "with open('input.txt', \"r\") as f:
+      "with open('input.txt', 'r') as f:
     lines = f.readlines()",
     ), DualHeading("Part 1", "Trebuchet Trouble"),
     Card(
@@ -85,12 +85,66 @@ print(answer1)
       [
         UList(
           [
-            [Text("m maps digit characters to their integer values")],
+            [Code("m"), Text(" maps digit characters to their integer values")],
             [
-              Text(
-                "first_value finds the first substring that starts with any key of m and returns its value",
-              ),
+              Code("first_value"),
+              Text(" finds the first substring that starts with any key of "),
+              Code("m"), Text(" and returns its value"),
             ], [Text("The string is reversed to find the last value")],
+          ],
+        ),
+      ],
+    ), DualHeading("Part 2", "Spelling Everything with Letters"),
+    Card(
+      "Task 2",
+      Some("img/2023-01-02.svg"),
+      [
+        Section(
+          [Text("Adapt part 1 to handle digits spelled out with letters.")],
+        ),
+      ],
+    ),
+    Section(
+      [
+        Text(
+          "Now, we need to handle digits spelled out with letters. We’ll update ",
+        ), Code("m"), Text(" with these new mappings."),
+      ],
+    ),
+    Section(
+      [
+        Text("However, now that "), Code("m"),
+        Text(
+          " contains keys with more than one letter it won’t work when the string is reversed. For example, it needs to match ",
+        ), Code("eno"), Text(" instead of "), Code("one"), Text("."),
+      ],
+    ),
+    Section(
+      [
+        Text("So we’ll create "), Code("rev_m"),
+        Text(" with each key reversed."),
+      ],
+    ),
+    Info(
+      "Key Points",
+      [
+        UList(
+          [
+            [
+              Code("m"),
+              Text(
+                " has been extended to include mappings for digits spelled out with letters (e.g. ",
+              ), Code("{'one': 1, 'two': 2, ...}"), Text(")."),
+            ],
+            [
+              Text(""), Code("rev_m"),
+              Text(" is m with each key reversed (e.g. "),
+              Code("{'eno': 1, 'owt': 2, ...}"), Text(")"),
+            ],
+            [
+              Text("The first digit is extracted using "), Code("m"),
+              Text(", while the last digit uses "), Code("rev_m"),
+            ],
           ],
         ),
       ],

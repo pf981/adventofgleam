@@ -22,7 +22,11 @@ pub fn render_home(base_path: String) -> Element(msg) {
 }
 
 pub fn render_post(base_path: String, post: Post) -> Element(msg) {
-  let title = int.to_string(post.year) <> "/" <> int.to_string(post.day)
+  let title =
+    int.to_string(post.year)
+    <> " Day "
+    <> int.to_string(post.day)
+    <> " | Advent of Gleam"
   let description =
     "Advent of code "
     <> int.to_string(post.year)

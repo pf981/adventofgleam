@@ -25,11 +25,6 @@ pub type InlineContent {
   EmphasisUL(String, Option(Color))
 }
 
-// pub type Emphasis {
-//   Emphasis(String, Option(Color))
-//   EmphasisUL(String, Option(Color))
-// }
-
 pub type Color {
   Green
   Blue
