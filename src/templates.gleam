@@ -900,7 +900,7 @@ fn footer(base_path: String) -> Element(msg) {
           ),
         ]),
         div([class("mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0")], [
-          a([attribute.target("_blank"), href("https://github.com/ ")], [
+          a([attribute.target("_blank"), href("https://github.com/pf981 ")], [
             i(
               [
                 class(
@@ -910,26 +910,38 @@ fn footer(base_path: String) -> Element(msg) {
               [],
             ),
           ]),
-          a([attribute.target("_blank"), href("https://codepen.io/ ")], [
-            i(
-              [
-                class(
-                  "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-codepen",
-                ),
-              ],
-              [],
-            ),
-          ]),
-          a([attribute.target("_blank"), href("https://www.linkedin.com/ ")], [
-            i(
-              [
-                class(
-                  "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin",
-                ),
-              ],
-              [],
-            ),
-          ]),
+          a(
+            [
+              attribute.target("_blank"),
+              href("https://stackoverflow.com/users/1751961/paul"),
+            ],
+            [
+              i(
+                [
+                  class(
+                    "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-stack-overflow",
+                  ),
+                ],
+                [],
+              ),
+            ],
+          ),
+          a(
+            [
+              attribute.target("_blank"),
+              href("https://www.linkedin.com/in/paulfoster01/"),
+            ],
+            [
+              i(
+                [
+                  class(
+                    "text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin",
+                  ),
+                ],
+                [],
+              ),
+            ],
+          ),
         ]),
       ],
     ),
