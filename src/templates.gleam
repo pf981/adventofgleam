@@ -186,251 +186,17 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
                             ),
                             attribute("@click", "modelOpen = false"),
                           ],
-                          [
-                            html.svg(
-                              [
-                                attribute("stroke", "currentColor"),
-                                attribute("viewBox", "0 0 24 24"),
-                                attribute("fill", "none"),
-                                attribute.class("w-6 h-6"),
-                                attribute("xmlns", "http://www.w3.org/2000/svg"),
-                              ],
-                              [
-                                element(
-                                  "path",
-                                  [
-                                    attribute(
-                                      "d",
-                                      "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z",
-                                    ),
-                                    attribute("stroke-width", "2"),
-                                    attribute("stroke-linejoin", "round"),
-                                    attribute("stroke-linecap", "round"),
-                                  ],
-                                  [],
-                                ),
-                              ],
-                            ),
-                          ],
+                          [html.i([class("bx bx-x-circle text-xl")], [])],
                         ),
                       ],
                     ),
-                    html.p([attribute.class("mt-2 text-sm text-gray-500 ")], [
-                      text(
-                        "Add your teammate to your team and start work to get things done
-                ",
-                      ),
-                    ]),
-                    html.form([attribute.class("mt-5")], [
-                      html.div([], [
-                        html.label(
-                          [
-                            attribute.class(
-                              "block text-sm text-gray-700 capitalize dark:text-gray-200",
-                            ),
-                            attribute.for("user name"),
-                          ],
-                          [text("Teammate name")],
-                        ),
-                        html.input([
-                          attribute.class(
-                            "block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40",
-                          ),
-                          attribute.type_("text"),
-                          attribute.placeholder("Arthur Melo"),
-                        ]),
-                      ]),
-                      html.div([attribute.class("mt-4")], [
-                        html.label(
-                          [
-                            attribute.class(
-                              "block text-sm text-gray-700 capitalize dark:text-gray-200",
-                            ),
-                            attribute.for("email"),
-                          ],
-                          [text("Teammate email")],
-                        ),
-                        html.input([
-                          attribute.class(
-                            "block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40",
-                          ),
-                          attribute.type_("email"),
-                          attribute.placeholder("arthurmelo@example.app"),
-                        ]),
-                      ]),
-                      html.div([attribute.class("mt-4")], [
-                        html.h1(
-                          [
-                            attribute.class(
-                              "text-xs font-medium text-gray-400 uppercase",
-                            ),
-                          ],
-                          [text("Permissions")],
-                        ),
-                        html.div([attribute.class("mt-4 space-y-5")], [
-                          html.div(
-                            [
-                              attribute("@click", "show =!show"),
-                              attribute("x-data", "{ show: true }"),
-                              attribute.class(
-                                "flex items-center space-x-3 cursor-pointer",
-                              ),
-                            ],
-                            [
-                              html.div(
-                                [
-                                  attribute(
-                                    ":class",
-                                    "[show ? 'bg-indigo-500' : 'bg-gray-300']",
-                                  ),
-                                  attribute.class(
-                                    "relative w-10 h-5 transition duration-200 ease-linear rounded-full",
-                                  ),
-                                ],
-                                [
-                                  html.label(
-                                    [
-                                      attribute(
-                                        ":class",
-                                        "[show ? 'translate-x-full border-indigo-500' : 'translate-x-0 border-gray-300']",
-                                      ),
-                                      attribute.class(
-                                        "absolute left-0 w-5 h-5 mb-2 transition duration-100 ease-linear transform bg-white border-2 rounded-full cursor-pointer",
-                                      ),
-                                      attribute("@click", "show =!show"),
-                                      attribute.for("show"),
-                                    ],
-                                    [],
-                                  ),
-                                  html.input([
-                                    attribute.class(
-                                      "hidden w-full h-full rounded-full appearance-none active:outline-none focus:outline-none",
-                                    ),
-                                    attribute.name("show"),
-                                    attribute.type_("checkbox"),
-                                  ]),
-                                ],
-                              ),
-                              html.p([attribute.class("text-gray-500")], [
-                                text("Can make task"),
-                              ]),
-                            ],
-                          ),
-                          html.div(
-                            [
-                              attribute("@click", "show =!show"),
-                              attribute("x-data", "{ show: false }"),
-                              attribute.class(
-                                "flex items-center space-x-3 cursor-pointer",
-                              ),
-                            ],
-                            [
-                              html.div(
-                                [
-                                  attribute(
-                                    ":class",
-                                    "[show ? 'bg-indigo-500' : 'bg-gray-300']",
-                                  ),
-                                  attribute.class(
-                                    "relative w-10 h-5 transition duration-200 ease-linear rounded-full",
-                                  ),
-                                ],
-                                [
-                                  html.label(
-                                    [
-                                      attribute(
-                                        ":class",
-                                        "[show ? 'translate-x-full border-indigo-500' : 'translate-x-0 border-gray-300']",
-                                      ),
-                                      attribute.class(
-                                        "absolute left-0 w-5 h-5 mb-2 transition duration-100 ease-linear transform bg-white border-2 rounded-full cursor-pointer",
-                                      ),
-                                      attribute("@click", "show =!show"),
-                                      attribute.for("show"),
-                                    ],
-                                    [],
-                                  ),
-                                  html.input([
-                                    attribute.class(
-                                      "hidden w-full h-full rounded-full appearance-none active:outline-none focus:outline-none",
-                                    ),
-                                    attribute.name("show"),
-                                    attribute.type_("checkbox"),
-                                  ]),
-                                ],
-                              ),
-                              html.p([attribute.class("text-gray-500")], [
-                                text("Can delete task"),
-                              ]),
-                            ],
-                          ),
-                          html.div(
-                            [
-                              attribute("@click", "show =!show"),
-                              attribute("x-data", "{ show: true }"),
-                              attribute.class(
-                                "flex items-center space-x-3 cursor-pointer",
-                              ),
-                            ],
-                            [
-                              html.div(
-                                [
-                                  attribute(
-                                    ":class",
-                                    "[show ? 'bg-indigo-500' : 'bg-gray-300']",
-                                  ),
-                                  attribute.class(
-                                    "relative w-10 h-5 transition duration-200 ease-linear rounded-full",
-                                  ),
-                                ],
-                                [
-                                  html.label(
-                                    [
-                                      attribute(
-                                        ":class",
-                                        "[show ? 'translate-x-full border-indigo-500' : 'translate-x-0 border-gray-300']",
-                                      ),
-                                      attribute.class(
-                                        "absolute left-0 w-5 h-5 mb-2 transition duration-100 ease-linear transform bg-white border-2 rounded-full cursor-pointer",
-                                      ),
-                                      attribute("@click", "show =!show"),
-                                      attribute.for("show"),
-                                    ],
-                                    [],
-                                  ),
-                                  html.input([
-                                    attribute.class(
-                                      "hidden w-full h-full rounded-full appearance-none active:outline-none focus:outline-none",
-                                    ),
-                                    attribute.name("show"),
-                                    attribute.type_("checkbox"),
-                                  ]),
-                                ],
-                              ),
-                              html.p([attribute.class("text-gray-500")], [
-                                text("Can edit task"),
-                              ]),
-                            ],
-                          ),
-                        ]),
-                      ]),
-                      html.div([attribute.class("flex justify-end mt-6")], [
-                        html.button(
-                          [
-                            attribute.class(
-                              "px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50",
-                            ),
-                            attribute.type_("button"),
-                          ],
-                          [
-                            text(
-                              "Invite Member
-                        ",
-                            ),
-                          ],
-                        ),
-                      ]),
-                    ]),
+                    html.pre(
+                      [
+                        attribute("data-lang", language_string(post.language)),
+                        class("clear-left"),
+                      ],
+                      [html.code([], [element.text(post.code)])],
+                    ),
                   ],
                 ),
               ],
@@ -441,6 +207,13 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
       ]),
     ]),
   )
+}
+
+fn language_string(language: post.Language) -> String {
+  case language {
+    post.Gleam -> "gleam"
+    post.Python -> "python"
+  }
 }
 
 fn format_date(date: post.Date) -> String {

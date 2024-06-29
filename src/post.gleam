@@ -10,6 +10,7 @@ pub type Post {
     author: String,
     tags: List(Tag),
     difficulty: Difficulty,
+    language: Language,
     code: String,
     content: List(Content),
   )
@@ -25,4 +26,9 @@ pub type Difficulty {
 
 pub type Date {
   Date(year: Int, month: Int, day: Int)
+}
+
+pub type Language {
+  Gleam
+  Python
 }

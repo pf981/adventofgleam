@@ -15,6 +15,7 @@ pub const content = post.Post(
   author: "Paul Foster",
   tags: [],
   difficulty: post.Easy,
+  language: post.Python,
   code: "import math
 import re
 
