@@ -141,6 +141,6 @@ fn color_class(color: Option(Color)) -> attribute.Attribute(a) {
     Some(Green) -> class("text-green")
     Some(Blue) -> class("text-blue")
     Some(Yellow) -> class("text-yellow-dark")
-    None -> class("")
+    None -> class("dark:text-white")
   }
 }
