@@ -90,6 +90,22 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
             attribute("aria-labelledby", "modal-title"),
             attribute.class("fixed inset-0 z-50 overflow-y-auto"),
             attribute("x-show", "modelOpen"),
+            // class("backdrop-opacity-30"),
+            // class("backdrop-opacity-10 bg-white"),
+            class("bg-opacity-50 bg-white"),
+            attribute("x-transition:leave-end", "opacity-0"),
+            attribute("x-transition:leave-start", "opacity-100"),
+            attribute(
+              "x-transition:leave",
+              "transition ease-in duration-200 transform",
+            ),
+            attribute("x-transition:enter-end", "opacity-100"),
+            attribute("x-transition:enter-start", "opacity-0"),
+            attribute(
+              "x-transition:enter",
+              "transition ease-out duration-300 transform",
+            ),
+            // class("backdrop-blur-sm"),
           ],
           [
             html.div(
@@ -126,7 +142,9 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
                 html.div(
                   [
                     attribute.class(
-                      "inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl",
+                      "inline-block w-full max-w-7xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
+                      // "inline-block w-full max-w-max p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
+                    // "inline-block w-full max-w-2xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl",
                     ),
                     attribute(
                       "x-transition:leave-end",
