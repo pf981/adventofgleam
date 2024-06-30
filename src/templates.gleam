@@ -106,12 +106,16 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
               "transition ease-out duration-300 transform",
             ),
             // class("backdrop-blur-sm"),
+            // class("grid h-screen place-items-center"),
+            class("align-middle grid h-screen w-screen"),
+            // Test centering
           ],
           [
             html.div(
               [
                 attribute.class(
-                  "flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0",
+                  // "flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0",
+                  "fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60  backdrop-blur-sm",
                 ),
               ],
               [
@@ -142,8 +146,9 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
                 html.div(
                   [
                     attribute.class(
-                      "inline-block w-full max-w-7xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
-                      // "inline-block w-full max-w-max p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
+                      "inline-block w-full max-w-7xl min-w-sm min-h-48 p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
+                      // "inline-block w-full max-w-7xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
+                    // "inline-block w-full max-w-max p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl",
                     // "inline-block w-full max-w-2xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl",
                     ),
                     attribute(
