@@ -67,8 +67,6 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
                 <> int.to_string(post.day),
               ),
               class(
-                // "block bg-secondary p-3 text-center font-body text-base font-medium text-white transition-colors hover:bg-green",
-                // "block border p-3 text-center font-body text-base font-medium transition-colors hover:bg-green-light dark:border-white dark:text-white",
                 " border p-3 text-center font-body text-base font-medium dark:text-white hover:text-secondary dark:hover:text-secondary transition-colors",
               ),
             ],
@@ -84,8 +82,7 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
             [i([class("bx bx-code-alt pr-1")], []), text("Full Solution")],
           ),
         ]),
-        // Prevent modal from briefly showing on page load: https://stackoverflow.com/questions/64430464/how-to-prevent-alpine-js-modal-from-showing-every-time-i-refresh-the-page
-        // html.template([attribute("x-if", "true")], [
+        // Modal
         html.div(
           [
             attribute("aria-modal", "true"),
@@ -205,7 +202,6 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
             ),
           ],
         ),
-        // ]),
       ]),
     ]),
   )
