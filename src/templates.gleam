@@ -192,9 +192,13 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
                     html.pre(
                       [
                         attribute("data-lang", language_string(post.language)),
-                        class("clear-left"),
+                        class("clear-left p-0 bg-transparent rounded"),
                       ],
-                      [html.code([], [element.text(post.code)])],
+                      [
+                        html.code([class("border rounded")], [
+                          element.text(post.code),
+                        ]),
+                      ],
                     ),
                   ],
                 ),
@@ -756,7 +760,7 @@ fn head(base_path: String, title: String, description: String) -> Element(msg) {
       ),
     ]),
     html.link([
-      href("https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"),
+      href("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"),
       attribute.rel("stylesheet"),
     ]),
     html.link([
@@ -768,14 +772,32 @@ fn head(base_path: String, title: String, description: String) -> Element(msg) {
     html.script(
       [
         attribute.src(
-          "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js",
         ),
       ],
       "",
     ),
+    //     html.script(
+    //       [
+    //         attribute.src(
+    //           "https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js",
+    //         ),
+    //       ],
+    //       "",
+    //     ),
+    //     html.script(
+    //       [],
+    //       "hljs.highlightAll();
+    // hljs.initLineNumbersOnLoad();",
+    //     ),
     html.link([
       href(
-        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-dark.min.css",
+        // "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/night-owl.min.css",
+        // "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css", // No
+        // "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/nord.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css",
+        // "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css",
+      // "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css",
       ),
       attribute.rel("stylesheet"),
     ]),

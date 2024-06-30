@@ -45,9 +45,13 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
     Subheading(text) -> html.h3([], [element.text(text)])
     Section(content) -> html.p([], list.map(content, view_inline))
     Snippet(lang, code) ->
-      html.pre([attribute("data-lang", lang), class("clear-left")], [
-        html.code([], [element.text(code)]),
-      ])
+      html.pre(
+        [
+          attribute("data-lang", lang),
+          class("clear-left p-0 bg-transparent rounded"),
+        ],
+        [html.code([class("border rounded")], [element.text(code)])],
+      )
     Card(heading, image, content) ->
       // html.div([class("card")], [
       //   html.div([class("card-body")], [
