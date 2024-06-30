@@ -48,7 +48,7 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
       html.pre([attribute("data-lang", lang), class("clear-left")], [
         html.code([], [element.text(code)]),
       ])
-    Card(heading, Some(image), content) ->
+    Card(heading, image, content) ->
       // html.div([class("card")], [
       //   html.div([class("card-body")], [
       //     html.div([class("card-title")], [html.text(heading)]),
@@ -84,19 +84,26 @@ pub fn view(base_path: String, content: Content) -> Element(msg) {
               list.map(content, view(base_path, _)),
             ),
           ]),
-          html.div(
-            [class("w-full mx-0 px-0 bg-white border-t border-grey-lighter")],
-            [
-              html.img([
-                attribute.alt(heading),
-                attribute.src(base_path <> "/" <> image),
-                class("w-full p-4"),
-              ]),
-            ],
-          ),
+          case image {
+            Some(path) ->
+              html.div(
+                [
+                  class(
+                    "w-full mx-0 px-0 bg-white border-t border-grey-lighter",
+                  ),
+                ],
+                [
+                  html.img([
+                    attribute.alt(heading),
+                    attribute.src(base_path <> "/" <> path),
+                    class("w-full p-4"),
+                  ]),
+                ],
+              )
+            None -> html.div([], [])
+          },
         ],
       )
-    Card(heading, None, content) -> todo
     // Info(heading, content) -> html.ul([], list.map(content, view(base_path, _)))
     Info(heading, content) ->
       html.div(

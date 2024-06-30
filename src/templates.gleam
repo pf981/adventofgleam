@@ -67,7 +67,9 @@ pub fn render_post(base_path: String, post: Post) -> Element(msg) {
                 <> int.to_string(post.day),
               ),
               class(
-                "block bg-secondary p-3 text-center font-body text-base font-medium text-white transition-colors hover:bg-green",
+                // "block bg-secondary p-3 text-center font-body text-base font-medium text-white transition-colors hover:bg-green",
+                // "block border p-3 text-center font-body text-base font-medium transition-colors hover:bg-green-light dark:border-white dark:text-white",
+                " border p-3 text-center font-body text-base font-medium dark:text-white hover:text-secondary dark:hover:text-secondary transition-colors",
               ),
             ],
             [i([class("bx bx-link-external pr-1")], []), text("Problem")],
