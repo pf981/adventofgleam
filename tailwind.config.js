@@ -145,6 +145,15 @@ module.exports = {
                 fontWeight: theme("fontWeight.normal"),
               },
             },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            code: {
+              color: theme("colors.black"),
+            },
           },
         },
         dark: {
@@ -161,6 +170,9 @@ module.exports = {
             },
             "ul > li::before": {
               backgroundColor: theme("colors.secondary"),
+            },
+            code: {
+              color: theme("colors.white"),
             },
           },
         },

@@ -75,7 +75,8 @@ print(answer2)",
     ),
     UList(
       [
-        [Code("12"), Text(" red cubes")], [Code("13"), Text("green cubes, and")],
+        [Code("12"), Text(" red cubes")],
+        [Code("13"), Text(" green cubes, and")],
         [Code("14"), Text(" blue cubes")],
       ],
     ),
