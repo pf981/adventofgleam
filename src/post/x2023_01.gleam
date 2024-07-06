@@ -16,6 +16,7 @@ pub const content = post.Post(
   tags: [],
   difficulty: post.Easy,
   language: post.Python,
+  thumbnail: "img/2023-01-1.svg",
   code: "with open('input.txt', 'r') as f:
     lines = f.readlines()
 
@@ -64,7 +65,7 @@ print(answer2)",
     ), DualHeading("Part 1", "Trebuchet Trouble"),
     Card(
       "Task 1",
-      Some("img/2023-01-01.svg"),
+      Some("img/2023-01-1.svg"),
       [
         Section(
           [
@@ -122,7 +123,7 @@ print(answer1)
     ), DualHeading("Part 2", "Spelling Everything with Letters"),
     Card(
       "Task 2",
-      Some("img/2023-01-02.svg"),
+      Some("img/2023-01-2.svg"),
       [
         Section(
           [Text("Adapt part 1 to handle digits spelled out with letters.")],

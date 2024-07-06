@@ -16,6 +16,7 @@ pub const content = post.Post(
   tags: [],
   difficulty: post.Easy,
   language: post.Python,
+  thumbnail: "img/2023-02-1.svg",
   code: "import math
 import re
 
@@ -53,7 +54,7 @@ print(answer2)",
     DualHeading("Part 1", "Prismatic Filters"),
     Card(
       "Task 1",
-      Some("img/2023-02-01.svg"),
+      Some("img/2023-02-1.svg"),
       [
         Section(
           [
@@ -142,7 +143,7 @@ print(answer1)
     ), DualHeading("Part 2", "Combining Cube Colour Counts"),
     Card(
       "Task 2",
-      Some("img/2023-02-02.svg"),
+      Some("img/2023-02-2.svg"),
       [
         Section(
           [

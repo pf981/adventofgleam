@@ -11,6 +11,7 @@ pub type Post {
     tags: List(Tag),
     difficulty: Difficulty,
     language: Language,
+    thumbnail: String,
     code: String,
     content: List(Content),
   )
